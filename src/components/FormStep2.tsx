@@ -1,6 +1,7 @@
+import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { FormData } from "@/pages/FormPage";
-import { Calendar, Clock, Target, BookOpen } from "lucide-react";
+import { Calendar, Clock, Target, BookOpen, ChevronDown, ChevronUp } from "lucide-react";
 
 interface FormStep2Props {
   formData: FormData;
@@ -33,30 +34,79 @@ const planningData: Record<string, any> = {
       { name: "Rendu et post-production", content: "V-Ray, Corona, retouches finales", duration: "S8-S9" }
     ]
   },
-  "Formation sur DOC": {
+  "Formation DCE": {
     modules: [
       { name: "Standards de documentation", content: "Normes, formats, échelles", duration: "S1-S2" },
       { name: "Plans d'exécution", content: "Détails techniques, nomenclature", duration: "S3-S4" },
       { name: "Dossiers réglementaires", content: "Permis de construire, CCTP", duration: "S5-S6" }
     ]
   },
-  "Pack Formation": {
+  "Formation Présentielle & En ligne": {
     modules: [
       { name: "AutoCAD Foundation", content: "Maîtrise complète du dessin 2D/3D", duration: "S1-S8" },
       { name: "Revit Architecture", content: "BIM et maquette numérique", duration: "S9-S18" },
       { name: "3ds Max Rendu", content: "Visualisation photoréaliste", duration: "S19-S27" },
       { name: "Projet de synthèse", content: "Villa complète de A à Z", duration: "S28-S30" }
     ]
+  },
+  "Pack Formations & Bibliothèque": {
+    modules: [
+      { 
+        name: "Module - Pack Complet", 
+        content: "Parcours complet multi-logiciels de A à Z", 
+        duration: "Accès permanent",
+        expandable: true
+      }
+    ],
+    description: `حزمة دورات تدريبية من الألف إلى الياء
+من الصفر إلى الاحتراف
+
+وثائق إدارية في الهندسة المدنية والأشغال العمومية
++100 ملف شامل لكل ما يتعلق بالهندسة المدنية وأشغال البناء
+
+تدريب كامل من الألف إلى الياء:
+
+AutoCAD
+Archicad
+REVIT ARCHITECTURE & STRUCTURE & MEP & BIM
+ROBOT STRUCTURE ANALYSIS "الخرسانة المسلحة والهياكل المعدنية"
+COVADIS VRD والطرق
+الهندسة الإنشائية المعدنية (Construction Métallique)
+Lumion
+Sketchup
+CYPECAD / CYPE 3D
+CANECO
+DIALUX
+CIVIL 3D
+Ms Project
+المترية والميزانية (Métré TCE)
+Microsoft Excel
+وغيرها من الدورات......
+
+دورات عبارة عن فيديوهات مسجلة باحتراف، كل ما ذكرنا وأكثر من 200 ساعة في المجموع، بالإضافة إلى الوثائق
+
+الوثائق التقنية - مذكرة حساب - مخططات -
+التقرير اليومي - تقدم المشروع - وصف المناقصة العمومية - CCAG - DGA
+
+والعديد غيرها
+كل هذا بسعر رمزي جداً
+
+لمزيد من المعلومات، تواصل معنا على الواتساب`
   }
 };
 
 const FormStep2 = ({ formData, updateFormData, onNext }: FormStep2Props) => {
+  const [expandedModule, setExpandedModule] = useState<number | null>(null);
   const selectedFormation = formData.projectType || "AutoCAD";
   const planning = planningData[selectedFormation] || planningData["AutoCAD"];
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     onNext();
+  };
+
+  const toggleModule = (index: number) => {
+    setExpandedModule(expandedModule === index ? null : index);
   };
 
   return (
@@ -80,7 +130,7 @@ const FormStep2 = ({ formData, updateFormData, onNext }: FormStep2Props) => {
             <span className="font-semibold text-foreground">Durée</span>
           </div>
           <p className="text-sm text-muted-foreground">
-            {planning.modules.length * 5} heures
+            {selectedFormation === "Pack Formations & Bibliothèque" ? "À votre rythme" : `${planning.modules.length * 5} heures`}
           </p>
         </div>
 
@@ -101,13 +151,14 @@ const FormStep2 = ({ formData, updateFormData, onNext }: FormStep2Props) => {
             <div className="w-10 h-10 rounded-full bg-primary-light/20 flex items-center justify-center">
               <Target className="w-5 h-5 text-primary-light" />
             </div>
-            <span className="font-semibold text-foreground">Certification</span>
+            <span className="font-semibold text-foreground">Objectif</span>
           </div>
           <p className="text-sm text-muted-foreground">
-            Certificat professionnel
+            Formation professionnelle
           </p>
         </div>
       </div>
+
 
       {/* Planning Table */}
       <div className="bg-white rounded-xl shadow-lg border border-border overflow-hidden animate-fade-in" style={{ animationDelay: '0.1s' }}>
@@ -117,33 +168,52 @@ const FormStep2 = ({ formData, updateFormData, onNext }: FormStep2Props) => {
         
         <div className="divide-y divide-border">
           {planning.modules.map((module: any, index: number) => (
-            <div 
-              key={index} 
-              className="p-6 hover:bg-secondary/50 transition-colors"
-            >
-              <div className="flex flex-col md:flex-row md:items-center gap-4">
-                <div className="flex-shrink-0">
-                  <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center">
-                    <span className="font-bold text-primary">{index + 1}</span>
+            <div key={index}>
+              <div 
+                className={`p-6 hover:bg-secondary/50 transition-colors ${module.expandable ? 'cursor-pointer' : ''}`}
+                onClick={() => module.expandable && toggleModule(index)}
+              >
+                <div className="flex flex-col md:flex-row md:items-center gap-4">
+                  <div className="flex-shrink-0">
+                    <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center">
+                      <span className="font-bold text-primary">{index + 1}</span>
+                    </div>
                   </div>
-                </div>
-                
-                <div className="flex-1 min-w-0">
-                  <h4 className="font-bold text-foreground text-lg mb-1">
-                    {module.name}
-                  </h4>
-                  <p className="text-sm text-muted-foreground">
-                    {module.content}
-                  </p>
-                </div>
-                
-                <div className="flex-shrink-0">
-                  <div className="flex items-center gap-2 text-sm font-medium text-primary bg-primary/10 px-4 py-2 rounded-full">
-                    <Clock className="w-4 h-4" />
-                    {module.duration}
+                  
+                  <div className="flex-1 min-w-0">
+                    <h4 className="font-bold text-foreground text-lg mb-1 flex items-center gap-2">
+                      {module.name}
+                      {module.expandable && (
+                        expandedModule === index ? 
+                          <ChevronUp className="w-5 h-5 text-primary" /> : 
+                          <ChevronDown className="w-5 h-5 text-primary" />
+                      )}
+                    </h4>
+                    <p className="text-sm text-muted-foreground">
+                      {module.content}
+                    </p>
+                  </div>
+                  
+                  <div className="flex-shrink-0">
+                    <div className="flex items-center gap-2 text-sm font-medium text-primary bg-primary/10 px-4 py-2 rounded-full">
+                      <Clock className="w-4 h-4" />
+                      {module.duration}
+                    </div>
                   </div>
                 </div>
               </div>
+              
+              {/* Expanded Description */}
+              {module.expandable && expandedModule === index && planning.description && (
+                <div className="px-6 pb-6 animate-fade-in">
+                  <div className="bg-gradient-to-br from-secondary/50 to-background rounded-xl p-6 border border-border" dir="rtl">
+                    <h3 className="text-xl font-bold text-foreground mb-4 text-right">تفاصيل الحزمة</h3>
+                    <div className="text-muted-foreground whitespace-pre-line text-right leading-relaxed">
+                      {planning.description}
+                    </div>
+                  </div>
+                </div>
+              )}
             </div>
           ))}
         </div>

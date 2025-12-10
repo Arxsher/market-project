@@ -34,7 +34,7 @@ const formations = [
     isPaid: false
   },
   {
-    name: "Formation sur DOC",
+    name: "Formation DCE",
     description: "Documentation technique professionnelle",
     skills: "Standards, nomenclature, dossiers",
     level: "Débutant",
@@ -42,7 +42,7 @@ const formations = [
     isPaid: false
   },
   {
-    name: "Pack Formation",
+    name: "Formation Présentielle & En ligne",
     description: "Parcours complet multi-logiciels",
     skills: "AutoCAD + Revit + 3ds Max",
     level: "Tous niveaux",
@@ -50,10 +50,10 @@ const formations = [
     isPaid: false
   },
   {
-    name: "Formation Payante",
-    description: "Acheter une formation et apprendre seul",
-    skills: "Auto-étude, accès illimité aux ressources",
-    level: "Auto-apprentissage",
+    name: "Pack Formations & Bibliothèque",
+    description: "حزمة دورات تدريبية من الألف إلى الياء",
+    skills: "أكثر من 200 ساعة تدريب + وثائق",
+    level: "من الصفر إلى الاحتراف",
     duration: "Accès permanent",
     isPaid: true
   }

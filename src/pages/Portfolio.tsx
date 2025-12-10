@@ -36,7 +36,7 @@ const Portfolio = () => {
                   AB Anas BENLECHGAR
                 </h1>
                 <p className="text-sm text-muted-foreground">
-                  Architecture & Métré TCE
+                  Architecture d'intérieur
                 </p>
               </div>
             </div>
@@ -80,7 +80,7 @@ const Portfolio = () => {
                     AB Anas BENLECHGAR
                   </h1>
                   <p className="text-xl text-muted-foreground font-medium">
-                    Architecture & Métré TCE
+                    Architecture d'intérieur
                   </p>
                 </div>
               </div>
@@ -133,7 +133,7 @@ const Portfolio = () => {
                 <div className="pt-4 border-t border-border">
                   <h3 className="text-xl font-semibold mb-4">Compétences</h3>
                   <div className="flex flex-wrap gap-2">
-                    {["AutoCAD", "SketchUp", "3DS Max", "V-Ray", "Photoshop", "Revit"].map((skill) => (
+                    {["AutoCAD", "SketchUp", "3DS Max", "V-Ray", "Photoshop", "Revit", "Lumion"].map((skill) => (
                       <span
                         key={skill}
                         className="px-4 py-2 bg-primary/10 text-primary rounded-full text-sm font-medium"
@@ -170,7 +170,7 @@ const Portfolio = () => {
                 </div>
                 <h3 className="text-lg font-semibold text-center mb-3">Téléphone</h3>
                 <p className="text-center text-muted-foreground font-medium">
-                  0665051381
+                  +212 665 051 381
                 </p>
               </div>
 
