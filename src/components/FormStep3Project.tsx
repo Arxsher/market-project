@@ -65,13 +65,13 @@ const FormStep3Project = ({ formData, updateFormData, onNext }: FormStep3Project
             Cliquez pour ajouter des fichiers
           </p>
           <p className="text-sm text-muted-foreground">
-            PNG, JPG, PDF (max. 10MB)
+            Images, PDF, Word, Excel, DWG, ZIP (max. 10MB)
           </p>
           <input
             id="file-upload"
             type="file"
             multiple
-            accept=".png,.jpg,.jpeg,.pdf"
+            accept=".png,.jpg,.jpeg,.gif,.webp,.pdf,.doc,.docx,.xls,.xlsx,.dwg,.dxf,.zip,.rar,.7z"
             className="hidden"
             onChange={handleFileUpload}
           />

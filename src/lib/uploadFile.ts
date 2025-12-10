@@ -8,19 +8,9 @@ export async function uploadFile(
   file: File,
   onProgress?: (progress: number) => void
 ): Promise<string> {
-  // ⚠️ IMPORTANT: Remplacez ces valeurs par vos vrais identifiants Cloudinary
-  // 1. Allez sur cloudinary.com/console
-  // 2. Notez votre Cloud Name (Dashboard)
-  // 3. Créez un Upload Preset UNSIGNED dans Settings > Upload
-  const CLOUDINARY_CLOUD_NAME = "dvzfebhyf"; // ← Remplacez ici
-  const CLOUDINARY_UPLOAD_PRESET = "preset-key"; // ← Remplacez ici
-
-  // Validation des identifiants
-  if (!CLOUDINARY_CLOUD_NAME || !CLOUDINARY_UPLOAD_PRESET || CLOUDINARY_CLOUD_NAME === "YOUR_CLOUD_NAME" || CLOUDINARY_UPLOAD_PRESET === "YOUR_UPLOAD_PRESET") {
-    throw new Error(
-      "⚠️ Configuration Cloudinary manquante ! Veuillez configurer CLOUDINARY_CLOUD_NAME et CLOUDINARY_UPLOAD_PRESET dans src/lib/uploadFile.ts"
-    );
-  }
+  // Cloudinary Configuration
+  const CLOUDINARY_CLOUD_NAME = "dvzfebhyf";
+  const CLOUDINARY_UPLOAD_PRESET = "preset-key";
 
   // Validation du fichier
   if (!file || !(file instanceof File)) {
@@ -30,6 +20,15 @@ export async function uploadFile(
   const formData = new FormData();
   formData.append("file", file);
   formData.append("upload_preset", CLOUDINARY_UPLOAD_PRESET);
+
+  // Determine resource type based on file extension
+  const imageExtensions = ['.png', '.jpg', '.jpeg', '.gif', '.webp', '.bmp', '.tiff', '.svg'];
+  const fileExtension = file.name.toLowerCase().substring(file.name.lastIndexOf('.'));
+  const isImage = imageExtensions.includes(fileExtension);
+
+  // Use /image/upload for images, /raw/upload for everything else (PDF, Word, Excel, DWG, ZIP, etc.)
+  const resourceType = isImage ? 'image' : 'raw';
+  const uploadUrl = `https://api.cloudinary.com/v1_1/${CLOUDINARY_CLOUD_NAME}/${resourceType}/upload`;
 
   try {
     // Use XMLHttpRequest for progress tracking
@@ -54,7 +53,7 @@ export async function uploadFile(
         reject(new Error('Erreur réseau lors de l\'upload'));
       });
 
-      xhr.open('POST', `https://api.cloudinary.com/v1_1/${CLOUDINARY_CLOUD_NAME}/upload`);
+      xhr.open('POST', uploadUrl);
       xhr.send(formData);
     });
 
