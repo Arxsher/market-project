@@ -1,6 +1,8 @@
 import { Button } from "@/components/ui/button";
-import { Phone, MapPin, Instagram, MessageCircle, Youtube } from "lucide-react";
+import { Phone, MapPin, Instagram, MessageCircle, Youtube, ExternalLink, FolderOpen, Award } from "lucide-react";
 import { useNavigate } from "react-router-dom";
+import { useLanguage } from "@/contexts/LanguageContext";
+import LanguageSwitcher from "@/components/LanguageSwitcher";
 import abLogo from "@/assets/ab-logo.png";
 
 // TikTok icon component
@@ -12,14 +14,15 @@ const TikTokIcon = ({ className }: { className?: string }) => (
 
 const Portfolio = () => {
   const navigate = useNavigate();
+  const { t } = useLanguage();
 
   const services = [
-    "Conceptions 2D et 3D",
-    "Plans plafond, électricité, menuiserie",
-    "Plans carrelage, cuisine, dressing",
-    "Revêtements de sol et habillage",
-    "CPS, métrés TCE",
-    "Planning et PV de chantier",
+    t("portfolio.service.1"),
+    t("portfolio.service.2"),
+    t("portfolio.service.3"),
+    t("portfolio.service.4"),
+    t("portfolio.service.5"),
+    t("portfolio.service.6"),
   ];
 
   return (
@@ -36,32 +39,33 @@ const Portfolio = () => {
                   AB Anas BENLECHGAR
                 </h1>
                 <p className="text-sm text-muted-foreground">
-                  Architecture d'intérieur
+                  {t("portfolio.interior")}
                 </p>
               </div>
             </div>
 
             {/* Navigation */}
-            <nav className="flex items-center gap-6">
+            <nav className="flex items-center gap-4">
               <Button
                 variant="ghost"
                 onClick={() => navigate("/")}
                 className="font-medium"
               >
-                Home
+                {t("nav.home")}
               </Button>
               <Button
                 variant="ghost"
                 onClick={() => document.getElementById("about")?.scrollIntoView({ behavior: "smooth" })}
               >
-                About me
+                {t("nav.about")}
               </Button>
               <Button
                 variant="ghost"
                 onClick={() => document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" })}
               >
-                Contact
+                {t("nav.contact")}
               </Button>
+              <LanguageSwitcher />
             </nav>
           </div>
         </div>
@@ -71,52 +75,85 @@ const Portfolio = () => {
       <section className="py-20 bg-gradient-to-b from-secondary/20 to-background">
         <div className="container mx-auto px-6">
           <div className="max-w-7xl mx-auto grid lg:grid-cols-2 gap-12 items-start">
-            {/* Left Side - Logo & Name */}
+            {/* Left Side - Logo & Title */}
             <div className="space-y-8">
               <div className="space-y-6">
                 <img src={abLogo} alt="AB Logo" className="w-40 h-40 object-contain" />
                 <div>
-                  <h1 className="text-4xl md:text-5xl font-bold tracking-tight mb-2">
-                    AB Anas BENLECHGAR
-                  </h1>
-                  <p className="text-xl text-muted-foreground font-medium">
-                    Architecture d'intérieur
+                  <h2 className="text-3xl font-bold mb-4">
+                    {t("portfolio.design.title")}
+                  </h2>
+                  <p className="text-lg text-muted-foreground leading-relaxed mb-6">
+                    {t("portfolio.design.desc")}
                   </p>
+                  
                 </div>
               </div>
-              
-              <div className="pt-6">
-                <h2 className="text-3xl font-bold mb-6">
-                  Design d'Intérieur Sur Mesure
-                </h2>
-                <p className="text-lg text-muted-foreground leading-relaxed">
-                  Transformez vos espaces avec des conceptions innovantes et personnalisées 
-                  qui reflètent votre vision et votre style unique.
-                </p>
+
+              {/* Portfolio & Reference Cards */}
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-4">
+                {/* Portefeuille général */}
+                <a
+                  href="https://drive.google.com/file/d/1_JoDuia65a3-XHoIwqihWFr1OWKOYV0f/view?usp=sharing"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="group bg-card rounded-xl shadow-sm p-6 border border-border hover:shadow-md hover:border-primary/30 transition-all"
+                >
+                  <div className="w-12 h-12 rounded-full bg-secondary/60 flex items-center justify-center mb-4 group-hover:bg-secondary transition-colors">
+                    <FolderOpen className="h-5 w-5 text-muted-foreground" />
+                  </div>
+                  <h3 className="text-lg font-bold mb-2 group-hover:text-primary transition-colors">
+                    {t("portfolio.folder.title")}
+                  </h3>
+                  <p className="text-sm text-muted-foreground mb-3">
+                    {t("portfolio.folder.desc")}
+                  </p>
+                  <div className="flex items-center gap-2 text-primary text-sm font-medium">
+                    <span>{t("portfolio.folder.link")}</span>
+                    <ExternalLink className="h-3 w-3 group-hover:translate-x-1 transition-transform" />
+                  </div>
+                </a>
+
+                {/* Référence */}
+                <a
+                  href="https://drive.google.com/file/d/1A3TfZGUFYj2XXsCsRnWyRt1tFIB8Nb2E/view?usp=sharing"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="group bg-card rounded-xl shadow-sm p-6 border border-border hover:shadow-md hover:border-primary/30 transition-all"
+                >
+                  <div className="w-12 h-12 rounded-full bg-secondary/60 flex items-center justify-center mb-4 group-hover:bg-secondary transition-colors">
+                    <Award className="h-5 w-5 text-muted-foreground" />
+                  </div>
+                  <h3 className="text-lg font-bold mb-2 group-hover:text-primary transition-colors">
+                    {t("portfolio.ref.title")}
+                  </h3>
+                  <p className="text-sm text-muted-foreground mb-3">
+                    {t("portfolio.ref.desc")}
+                  </p>
+                  <div className="flex items-center gap-2 text-primary text-sm font-medium">
+                    <span>{t("portfolio.ref.link")}</span>
+                    <ExternalLink className="h-3 w-3 group-hover:translate-x-1 transition-transform" />
+                  </div>
+                </a>
               </div>
             </div>
 
             {/* Right Side - About Me Content */}
             <div id="about" className="bg-card rounded-2xl shadow-elegant p-8 border border-border scroll-mt-24">
-              <h2 className="text-3xl font-semibold mb-6">À propos de moi</h2>
+              <h2 className="text-3xl font-semibold mb-6">{t("portfolio.about.title")}</h2>
               
               <div className="space-y-6">
                 <div className="prose prose-slate max-w-none">
                   <p className="text-base leading-relaxed text-muted-foreground">
-                    <strong className="text-foreground">AB Anas BENLECHGAR</strong> est un bureau de design d'intérieur 
-                    et d'aménagement professionnel spécialisé dans la création de concepts personnalisés 
-                    pour les espaces professionnels et résidentiels.
+                    <strong className="text-foreground">AB Anas BENLECHGAR</strong> {t("portfolio.about.p1").replace("AB Anas BENLECHGAR", "")}
                   </p>
                   <p className="text-base leading-relaxed text-muted-foreground">
-                    Avec une passion pour l'architecture d'intérieur, nous nous engageons à offrir des 
-                    solutions de design innovantes qui allient esthétique et fonctionnalité. Notre approche 
-                    repose sur la qualité, la créativité, le professionnalisme et un service personnalisé 
-                    adapté aux besoins uniques de chaque client.
+                    {t("portfolio.about.p2")}
                   </p>
                 </div>
 
                 <div className="pt-4">
-                  <h3 className="text-xl font-semibold mb-4">Services</h3>
+                  <h3 className="text-xl font-semibold mb-4">{t("portfolio.services")}</h3>
                   <div className="grid grid-cols-1 gap-3">
                     {services.map((service, index) => (
                       <div
@@ -131,7 +168,7 @@ const Portfolio = () => {
                 </div>
 
                 <div className="pt-4 border-t border-border">
-                  <h3 className="text-xl font-semibold mb-4">Compétences</h3>
+                  <h3 className="text-xl font-semibold mb-4">{t("portfolio.skills")}</h3>
                   <div className="flex flex-wrap gap-2">
                     {["AutoCAD", "SketchUp", "3DS Max", "V-Ray", "Photoshop", "Revit", "Lumion"].map((skill) => (
                       <span
@@ -155,10 +192,10 @@ const Portfolio = () => {
           <div className="max-w-5xl mx-auto">
             <div className="text-center mb-16">
               <h2 className="text-4xl md:text-5xl font-bold mb-4">
-                Contactez-nous
+                {t("portfolio.contact.title")}
               </h2>
               <p className="text-muted-foreground text-lg">
-                Notre équipe est à votre écoute pour donner vie à vos projets
+                {t("portfolio.contact.subtitle")}
               </p>
             </div>
             
@@ -168,7 +205,7 @@ const Portfolio = () => {
                 <div className="w-14 h-14 rounded-full bg-primary/10 flex items-center justify-center mb-6 mx-auto">
                   <Phone className="h-7 w-7 text-primary" />
                 </div>
-                <h3 className="text-lg font-semibold text-center mb-3">Téléphone</h3>
+                <h3 className="text-lg font-semibold text-center mb-3">{t("portfolio.phone")}</h3>
                 <p className="text-center text-muted-foreground font-medium">
                   +212 665 051 381
                 </p>
@@ -179,19 +216,19 @@ const Portfolio = () => {
                 <div className="w-14 h-14 rounded-full bg-primary/10 flex items-center justify-center mb-6 mx-auto">
                   <MapPin className="h-7 w-7 text-primary" />
                 </div>
-                <h3 className="text-lg font-semibold text-center mb-3">Adresse</h3>
+                <h3 className="text-lg font-semibold text-center mb-3">{t("portfolio.address")}</h3>
                 <div className="text-center text-muted-foreground text-sm font-medium space-y-1">
-                  <p>6ème étage, Espace Ranime</p>
-                  <p>16 Rue des Asphodèles</p>
-                  <p>Bd Ghandi</p>
-                  <p>Casablanca, Maroc</p>
+                  <p>{t("office.floor")}</p>
+                  <p>{t("office.street")}</p>
+                  <p>{t("office.boulevard")}</p>
+                  <p>{t("office.country")}</p>
                 </div>
               </div>
             </div>
 
             {/* Social Links */}
             <div className="bg-card rounded-xl shadow-lg p-8 border border-border">
-              <h3 className="text-2xl font-semibold text-center mb-8">Suivez-nous</h3>
+              <h3 className="text-2xl font-semibold text-center mb-8">{t("portfolio.follow")}</h3>
               <div className="flex flex-wrap justify-center gap-4">
                 <a
                   href="https://wa.me/212665051381"
@@ -239,7 +276,7 @@ const Portfolio = () => {
       <footer className="bg-black text-white py-8">
         <div className="container mx-auto px-6 text-center">
           <p className="text-sm">
-            © 2025 AB Anas BENLECHGAR. Tous droits réservés.
+            {t("portfolio.footer")}
           </p>
         </div>
       </footer>
