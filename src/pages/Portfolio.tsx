@@ -230,42 +230,51 @@ const Portfolio = () => {
             <div className="bg-card rounded-xl shadow-lg p-8 border border-border">
               <h3 className="text-2xl font-semibold text-center mb-8">{t("portfolio.follow")}</h3>
               <div className="flex flex-wrap justify-center gap-4">
-                <a
-                  href="https://wa.me/212665051381"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex items-center gap-3 px-6 py-3 bg-green-500/10 text-green-600 rounded-lg hover:bg-green-500/20 hover:scale-105 transition-all shadow-sm"
-                >
-                  <MessageCircle className="h-5 w-5" />
-                  <span className="font-medium">WhatsApp</span>
-                </a>
-                <a
-                  href="https://www.instagram.com/ab.anas.benlechgar?igsh=MWpyYXpobDE4MTM5Nw=="
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex items-center gap-3 px-6 py-3 bg-pink-500/10 text-pink-600 rounded-lg hover:bg-pink-500/20 hover:scale-105 transition-all shadow-sm"
-                >
-                  <Instagram className="h-5 w-5" />
-                  <span className="font-medium">Instagram</span>
-                </a>
-                <a
-                  href="https://youtube.com/@ab.anas.benlechgar?si=RUq_6s2zJcsSBm8v"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex items-center gap-3 px-6 py-3 bg-red-500/10 text-red-600 rounded-lg hover:bg-red-500/20 hover:scale-105 transition-all shadow-sm"
-                >
-                  <Youtube className="h-5 w-5" />
-                  <span className="font-medium">YouTube</span>
-                </a>
-                <a
-                  href="https://tiktok.com/@abanassbenlechgar"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex items-center gap-3 px-6 py-3 bg-gray-500/10 text-gray-700 rounded-lg hover:bg-gray-500/20 hover:scale-105 transition-all shadow-sm"
-                >
-                  <TikTokIcon className="h-5 w-5" />
-                  <span className="font-medium">TikTok</span>
-                </a>
+              <a
+                href="https://linkbio.co/Plateforme-AB"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center gap-3 px-6 py-3 bg-primary/10 text-primary rounded-lg hover:bg-primary/20 hover:scale-105 transition-all shadow-sm"
+              >
+                <ExternalLink className="h-5 w-5" />
+                <span className="font-medium">Plateforme AB</span>
+              </a>
+              <a
+                href="https://wa.me/212665051381"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center gap-3 px-6 py-3 bg-green-500/10 text-green-600 rounded-lg hover:bg-green-500/20 hover:scale-105 transition-all shadow-sm"
+              >
+                <MessageCircle className="h-5 w-5" />
+                <span className="font-medium">WhatsApp</span>
+              </a>
+              <a
+                href="https://www.instagram.com/ab.anas.benlechgar?igsh=MWpyYXpobDE4MTM5Nw=="
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center gap-3 px-6 py-3 bg-pink-500/10 text-pink-600 rounded-lg hover:bg-pink-500/20 hover:scale-105 transition-all shadow-sm"
+              >
+                <Instagram className="h-5 w-5" />
+                <span className="font-medium">Instagram</span>
+              </a>
+              <a
+                href="https://youtube.com/@ab.anas.benlechgar?si=RUq_6s2zJcsSBm8v"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center gap-3 px-6 py-3 bg-red-500/10 text-red-600 rounded-lg hover:bg-red-500/20 hover:scale-105 transition-all shadow-sm"
+              >
+                <Youtube className="h-5 w-5" />
+                <span className="font-medium">YouTube</span>
+              </a>
+              <a
+                href="https://tiktok.com/@abanassbenlechgar"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center gap-3 px-6 py-3 bg-gray-500/10 text-gray-700 rounded-lg hover:bg-gray-500/20 hover:scale-105 transition-all shadow-sm"
+              >
+                <TikTokIcon className="h-5 w-5" />
+                <span className="font-medium">TikTok</span>
+              </a>
               </div>
             </div>
           </div>

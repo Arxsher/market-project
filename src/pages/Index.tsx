@@ -73,62 +73,43 @@ const Index = () => {
             
             <div className="grid md:grid-cols-2 gap-10 md:gap-16">
               {/* Projets d'Architecture */}
-              <div className="space-y-7 animate-fade-in" style={{ animationDelay: "0.1s" }}>
+                <div className="space-y-7 animate-fade-in" style={{ animationDelay: "0.1s" }}>
                 <div className="bg-primary py-5 px-8 rounded-lg shadow-elegant">
                   <h3 className="font-heading text-2xl font-semibold text-center text-primary-foreground tracking-wide">Projets d'Architecture</h3>
                 </div>
-                
-                <div className="space-y-5">
-                  <div className="p-6 bg-card rounded-lg shadow-[var(--shadow-soft)] border border-border hover:shadow-[var(--shadow-elegant)] transition-all duration-300">
-                    <h4 className="font-body font-semibold text-base">Une Expertise au Service de Votre Vision</h4>
-                  </div>
-                  
-                  <div className="p-6 bg-card rounded-lg shadow-[var(--shadow-soft)] border border-border hover:shadow-[var(--shadow-elegant)] transition-all duration-300">
-                    <h4 className="font-body font-semibold text-base">Un Processus Clair et Rassurant</h4>
-                  </div>
-                  
-                  <div className="p-6 bg-card rounded-lg shadow-[var(--shadow-soft)] border border-border hover:shadow-[var(--shadow-elegant)] transition-all duration-300">
-                    <h4 className="font-body font-semibold text-base">Maîtrise des Enjeux Techniques et Réglementaires</h4>
-                  </div>
-                  
-                  <div className="p-6 bg-card rounded-lg shadow-[var(--shadow-soft)] border border-border hover:shadow-[var(--shadow-elegant)] transition-all duration-300">
-                    <h4 className="font-body font-semibold text-base">Une Valeur Ajoutée Créative et Fonctionnelle</h4>
-                  </div>
-                </div>
-                
-                <p className="font-body text-sm leading-relaxed pt-6 text-muted-foreground">
-                  Confier votre projet, c'est investir dans la sérénité. Nous transformons vos idées en plans précis et beaux, pour un résultat final qui dépasse vos attentes
-                </p>
-              </div>
 
-              {/* Formations aux Logiciels */}
-              <div className="space-y-7 animate-fade-in" style={{ animationDelay: "0.2s" }}>
+                <div className="p-6 bg-card rounded-lg shadow-[var(--shadow-soft)] border border-border hover:shadow-[var(--shadow-elegant)] transition-all duration-300">
+                  <p className="font-body text-base leading-relaxed">
+                  Nous mettons notre expertise au service de votre vision.
+                  <br />
+                  Grâce à un processus clair et rassurant, nous maîtrisons les enjeux techniques et réglementaires tout en apportant une valeur ajoutée créative et fonctionnelle.
+                  <br />
+                  <br />
+                  Confier votre projet, c’est investir dans la sérénité : nous transformons vos idées en espaces précis, esthétiques et durables, pour un résultat qui dépasse vos attentes.
+                  </p>
+                </div>
+                </div>
+
+                {/* Formations aux Logiciels */}
+                <div className="space-y-7 animate-fade-in" style={{ animationDelay: "0.2s" }}>
                 <div className="bg-primary py-5 px-8 rounded-lg shadow-elegant">
                   <h3 className="font-heading text-2xl font-semibold text-center text-primary-foreground tracking-wide">Formations aux Logiciels</h3>
                 </div>
-                
-                <div className="space-y-5">
-                  <div className="p-6 bg-card rounded-lg shadow-[var(--shadow-soft)] border border-border hover:shadow-[var(--shadow-elegant)] transition-all duration-300">
-                    <h4 className="font-body font-semibold text-base">Des Formateurs qui Sont des Experts du Terrain</h4>
-                  </div>
-                  
-                  <div className="p-6 bg-card rounded-lg shadow-[var(--shadow-soft)] border border-border hover:shadow-[var(--shadow-elegant)] transition-all duration-300">
-                    <h4 className="font-body font-semibold text-base">Une Pédagogie par la Pratique</h4>
-                  </div>
-                  
-                  <div className="p-6 bg-card rounded-lg shadow-[var(--shadow-soft)] border border-border hover:shadow-[var(--shadow-elegant)] transition-all duration-300">
-                    <h4 className="font-body font-semibold text-base">Un Cursus Complet</h4>
-                  </div>
-                  
-                  <div className="p-6 bg-card rounded-lg shadow-[var(--shadow-soft)] border border-border hover:shadow-[var(--shadow-elegant)] transition-all duration-300">
-                    <h4 className="font-body font-semibold text-base">Un Accès et un Suivi Post-Formation</h4>
-                  </div>
+
+                <div className="p-6 bg-card rounded-lg shadow-[var(--shadow-soft)] border border-border hover:shadow-[var(--shadow-elegant)] transition-all duration-300">
+                  <p className="font-body text-base leading-relaxed">
+                  Une pédagogie tournée vers la pratique
+                  <br />
+                  Nos formateurs sont des experts du terrain.
+                  <br />
+                  <br />
+                  Nous proposons un cursus complet, basé sur l’apprentissage par la pratique, avec un suivi personnalisé même après la formation.
+                  <br />
+                  <br />
+                  Notre objectif : vous apprendre à concevoir efficacement, réduire les erreurs et améliorer la collaboration.
+                  </p>
                 </div>
-                
-                <p className="font-body text-sm leading-relaxed pt-6 text-muted-foreground">
-                  Nous ne vous apprenons pas juste à cliquer, nous vous enseignons à concevoir plus efficacement, avec moins d'erreurs et une meilleure collaboration.
-                </p>
-              </div>
+                </div>
             </div>
           </div>
         </div>
@@ -145,13 +126,13 @@ const Index = () => {
                 </h2>
                 <div className="space-y-6">
                   <p className="font-body text-lg text-muted-foreground leading-relaxed">
-                    AB Anas BENLECHGAR est un bureau de design d'intérieur et d'aménagement professionnel spécialisé dans la création de concepts personnalisés pour les espaces professionnels.
+                    AB Anas BENLECHGAR est un bureau de design d’intérieur et d’aménagement professionnel, spécialisé dans la création de concepts sur mesure pour les espaces de travail.
                   </p>
                   <p className="font-body text-lg text-muted-foreground leading-relaxed">
-                    Nous avons une équipe talentueuse d'architectes d'intérieur et d'ingénieurs. Nous sommes passionnés par l'architecture d'intérieur et nous croyons en l'importance de la qualité, de la créativité et du professionnalisme.
+                    Notre équipe d’architectes d’intérieur et d’ingénieurs passionnés croit en l’importance de la qualité, de la créativité et du professionnalisme. Nous nous engageons à offrir un service personnalisé, transparent et de haut niveau.
                   </p>
                   <p className="font-body text-lg text-muted-foreground leading-relaxed">
-                    Nous nous engageons à offrir un service personnalisé, transparent et de qualité supérieure. Chez AB Anas BENLECHGAR, nous donnons vie à vos idées en créant des espaces professionnels fonctionnels, esthétiques et durables.
+                    Chez AB Anas BENLECHGAR, nous donnons vie à vos idées en créant des environnements fonctionnels, esthétiques et durables.  
                   </p>
                 </div>
                 <div className="pt-6">
@@ -179,7 +160,7 @@ const Index = () => {
       </section>
 
       {/* Bureau Casablanca Section */}
-      <section className="py-32 bg-secondary/20">
+      <section className=" bg-secondary/20">
         <div className="container mx-auto px-4">
           <div className="max-w-6xl mx-auto">
             <div className="bg-card rounded-3xl shadow-elegant overflow-hidden">
@@ -213,15 +194,14 @@ const Index = () => {
                       Bureau Casablanca
                     </h2>
                     <p className="font-body text-base text-muted-foreground leading-relaxed">
-                      Notre bureau est situé sur le boulevard Ghandi à Casablanca. Depuis cet emplacement, notre équipe d'experts et de spécialistes en architecture et en formation se tient à votre disposition chaque jour pour accompagner vos projets, résoudre vos problématiques et contribuer à l'amélioration continue de vos résultats
+                      Notre équipe est disponible chaque jour pour accompagner vos projets, résoudre vos problématiques et contribuer à l’amélioration continue de vos résultats.
                     </p>
                     
                     {/* Address */}
                     <div className="pt-4 space-y-1 font-body text-sm">
-                      <p className="font-semibold">6ème étage, Espace Ranime</p>
+                      <p className="font-semibold">Boulevard Ghandi – Espace Ranime, 6ᵉ étage</p>
                       <p>16 Rue des Asphodèles</p>
-                      <p>Bd Ghandi – Casablanca</p>
-                      <p>Maroc</p>
+                      <p>Casablanca -Maroc</p>
                     </div>
                   </div>
 
@@ -253,7 +233,7 @@ const Index = () => {
           <div className="max-w-4xl mx-auto text-center">
             <h2 className="font-heading text-5xl md:text-6xl font-semibold mb-8 tracking-tight">Prêt à commencer?</h2>
             <p className="font-body text-xl md:text-2xl text-muted-foreground mb-12 font-light leading-relaxed">
-              Remplissez notre formulaire en quelques minutes et recevez une réponse rapide
+              Remplissez notre formulaire en quelques minutes et recevez une réponse rapide. Accédez également à nos formations pour développer vos compétences.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Button
@@ -282,9 +262,15 @@ const Index = () => {
           <p className="font-body text-sm font-light tracking-wide">
             © 2025 Architecture d'Excellence. Tous droits réservés.
           </p>
-          <p className="font-body text-sm mt-3 opacity-90 font-light">
-            Contact: 0665051381
-          </p>
+            <a
+            href="https://wa.me/212665051381"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="font-body text-sm mt-3 opacity-90 font-light inline-flex items-center gap-2 hover:opacity-100 hover:text-white-400 hover:-translate-y-1 hover:scale-105 transition-transform transform duration-200 ease-out focus:outline-none focus:ring-2 focus:ring-emerald-400 rounded"
+            aria-label="Contacter via WhatsApp"
+            >
+            Contact: +212 665 051 381
+            </a>
         </div>
       </footer>
     </div>
