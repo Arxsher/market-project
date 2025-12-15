@@ -1,16 +1,23 @@
 import { Button } from "@/components/ui/button";
-import { Phone, MapPin, Instagram, MessageCircle, Youtube, FolderOpen, Award, ExternalLink  } from "lucide-react";
+import {
+  Phone,
+  MapPin,
+  Instagram,
+  MessageCircle,
+  Youtube,
+  FolderOpen,
+  Award,
+  ExternalLink,
+} from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import abLogo from "@/assets/ab-logo.png";
 import { useState } from "react";
 import { Menu, X } from "lucide-react";
 
-
-
 // TikTok icon component
 const TikTokIcon = ({ className }: { className?: string }) => (
   <svg viewBox="0 0 24 24" fill="currentColor" className={className}>
-    <path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-5.2 1.74 2.89 2.89 0 012.31-4.64 2.93 2.93 0 01.88.13V9.4a6.84 6.84 0 00-1-.05A6.33 6.33 0 005 20.1a6.34 6.34 0 0010.86-4.43v-7a8.16 8.16 0 004.77 1.52v-3.4a4.85 4.85 0 01-1-.1z"/>
+    <path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-5.2 1.74 2.89 2.89 0 012.31-4.64 2.93 2.93 0 01.88.13V9.4a6.84 6.84 0 00-1-.05A6.33 6.33 0 005 20.1a6.34 6.34 0 0010.86-4.43v-7a8.16 8.16 0 004.77 1.52v-3.4a4.85 4.85 0 01-1-.1z" />
   </svg>
 );
 
@@ -30,97 +37,95 @@ const Portfolio = () => {
 
   return (
     <div className="min-h-screen bg-background">
-    {/* Header */}
-<header className="sticky top-0 z-50 bg-card border-b border-border shadow-sm">
-  <div className="container mx-auto px-4 md:px-6 py-4">
-    <div className="flex items-center justify-between">
+      {/* Header */}
+      <header className="sticky top-0 z-50 bg-card border-b border-border shadow-sm">
+        <div className="container mx-auto px-4 md:px-6 py-4">
+          <div className="flex items-center justify-between">
+            {/* Logo & Name */}
+            <div className="flex items-center gap-3">
+              <img
+                src={abLogo}
+                alt="AB Logo"
+                className="w-12 h-12 md:w-16 md:h-16 object-contain"
+              />
+              <div>
+                <h1 className="text-base md:text-xl font-semibold tracking-tight">
+                  AB Anas BENLECHGAR
+                </h1>
+                <p className="text-xs md:text-sm text-muted-foreground">
+                  Architecture d'intérieur
+                </p>
+              </div>
+            </div>
 
-      {/* Logo & Name */}
-      <div className="flex items-center gap-3">
-        <img
-          src={abLogo}
-          alt="AB Logo"
-          className="w-12 h-12 md:w-16 md:h-16 object-contain"
-        />
-        <div>
-          <h1 className="text-base md:text-xl font-semibold tracking-tight">
-            AB Anas BENLECHGAR
-          </h1>
-          <p className="text-xs md:text-sm text-muted-foreground">
-            Architecture d'intérieur
-          </p>
+            {/* Desktop Navigation */}
+            <nav className="hidden md:flex items-center gap-6">
+              <Button variant="ghost" onClick={() => navigate("/")}>
+                Home
+              </Button>
+              <Button
+                variant="ghost"
+                onClick={() =>
+                  document
+                    .getElementById("about")
+                    ?.scrollIntoView({ behavior: "smooth" })
+                }
+              >
+                About me
+              </Button>
+              <Button
+                variant="ghost"
+                onClick={() =>
+                  document
+                    .getElementById("contact")
+                    ?.scrollIntoView({ behavior: "smooth" })
+                }
+              >
+                Contact
+              </Button>
+            </nav>
+
+            {/* Mobile Menu Button */}
+            <button
+              className="md:hidden"
+              onClick={() => setOpen((prev) => !prev)}
+            >
+              {open ? <X size={26} /> : <Menu size={26} />}
+            </button>
+          </div>
+
+          {/* Mobile Navigation */}
+          {open && (
+            <div className="md:hidden mt-4 flex flex-col gap-2">
+              <Button variant="ghost" onClick={() => navigate("/")}>
+                Home
+              </Button>
+              <Button
+                variant="ghost"
+                onClick={() => {
+                  document
+                    .getElementById("about")
+                    ?.scrollIntoView({ behavior: "smooth" });
+                  setOpen(false);
+                }}
+              >
+                About me
+              </Button>
+              <Button
+                variant="ghost"
+                onClick={() => {
+                  document
+                    .getElementById("contact")
+                    ?.scrollIntoView({ behavior: "smooth" });
+                  setOpen(false);
+                }}
+              >
+                Contact
+              </Button>
+            </div>
+          )}
         </div>
-      </div>
-
-      {/* Desktop Navigation */}
-      <nav className="hidden md:flex items-center gap-6">
-        <Button variant="ghost" onClick={() => navigate("/")}>
-          Home
-        </Button>
-        <Button
-          variant="ghost"
-          onClick={() =>
-            document
-              .getElementById("about")
-              ?.scrollIntoView({ behavior: "smooth" })
-          }
-        >
-          About me
-        </Button>
-        <Button
-          variant="ghost"
-          onClick={() =>
-            document
-              .getElementById("contact")
-              ?.scrollIntoView({ behavior: "smooth" })
-          }
-        >
-          Contact
-        </Button>
-      </nav>
-
-      {/* Mobile Menu Button */}
-      <button
-        className="md:hidden"
-        onClick={() => setOpen((prev) => !prev)}
-      >
-        {open ? <X size={26} /> : <Menu size={26} />}
-      </button>
-    </div>
-
-    {/* Mobile Navigation */}
-    {open && (
-      <div className="md:hidden mt-4 flex flex-col gap-2">
-        <Button variant="ghost" onClick={() => navigate("/")}>
-          Home
-        </Button>
-        <Button
-          variant="ghost"
-          onClick={() => {
-            document
-              .getElementById("about")
-              ?.scrollIntoView({ behavior: "smooth" });
-            setOpen(false);
-          }}
-        >
-          About me
-        </Button>
-        <Button
-          variant="ghost"
-          onClick={() => {
-            document
-              .getElementById("contact")
-              ?.scrollIntoView({ behavior: "smooth" });
-            setOpen(false);
-          }}
-        >
-          Contact
-        </Button>
-      </div>
-    )}
-  </div>
-</header>
-
+      </header>
 
       {/* Hero Section with About Me */}
       <section className="py-20 bg-gradient-to-b from-secondary/20 to-background">
@@ -129,7 +134,11 @@ const Portfolio = () => {
             {/* Left Side - Logo & Name */}
             <div className="space-y-8">
               <div className="space-y-6">
-                <img src={abLogo} alt="AB Logo" className="w-40 h-40 object-contain" />
+                <img
+                  src={abLogo}
+                  alt="AB Logo"
+                  className="w-40 h-40 object-contain"
+                />
                 <div>
                   <h1 className="text-4xl md:text-5xl font-bold tracking-tight mb-2">
                     AB Anas BENLECHGAR
@@ -139,18 +148,19 @@ const Portfolio = () => {
                   </p>
                 </div>
               </div>
-              
+
               <div className="pt-6">
                 <h2 className="text-3xl font-bold mb-6">
-                  Conception / Aménagement  / Travaux
+                  Conception / Aménagement / Travaux
                 </h2>
                 <p className="text-lg text-muted-foreground leading-relaxed">
-                  Transformez vos espaces avec des conceptions innovantes et personnalisées 
-                  qui reflètent votre vision et votre style unique.
+                  Transformez vos espaces avec des conceptions innovantes et
+                  personnalisées qui reflètent votre vision et votre style
+                  unique.
                 </p>
               </div>
 
-               {/* Portfolio & Reference Cards */}
+              {/* Portfolio & Reference Cards */}
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-4">
                 {/* Portefeuille général */}
                 <a
@@ -166,7 +176,8 @@ const Portfolio = () => {
                     Portefeuille général
                   </h3>
                   <p className="text-sm text-muted-foreground mb-3">
-                    Découvrez l'ensemble de nos réalisations et projets d'architecture d'intérieur
+                    Découvrez l'ensemble de nos réalisations et projets
+                    d'architecture d'intérieur
                   </p>
                   <div className="flex items-center gap-2 text-primary text-sm font-medium">
                     <span>Voir le portfolio</span>
@@ -188,7 +199,8 @@ const Portfolio = () => {
                     Référence
                   </h3>
                   <p className="text-sm text-muted-foreground mb-3">
-                    Nos certifications, attestations et références professionnelles
+                    Nos certifications, attestations et références
+                    professionnelles
                   </p>
                   <div className="flex items-center gap-2 text-primary text-sm font-medium">
                     <span>Voir les références</span>
@@ -199,21 +211,30 @@ const Portfolio = () => {
             </div>
 
             {/* Right Side - About Me Content */}
-            <div id="about" className="bg-card rounded-2xl shadow-elegant p-8 border border-border scroll-mt-24">
+            <div
+              id="about"
+              className="bg-card rounded-2xl shadow-elegant p-8 border border-border scroll-mt-24"
+            >
               <h2 className="text-3xl font-semibold mb-6">À propos de moi</h2>
-              
+
               <div className="space-y-6">
                 <div className="prose prose-slate max-w-none">
                   <p className="text-base leading-relaxed text-muted-foreground">
-                    <strong className="text-foreground">AB Anas BENLECHGAR</strong> est un bureau de design d'intérieur 
-                    et d'aménagement professionnel spécialisé dans la création de concepts personnalisés 
-                    pour les espaces professionnels et résidentiels.
+                    <strong className="text-foreground">
+                      AB Anas BENLECHGAR
+                    </strong>{" "}
+                    est un bureau de design d'intérieur et d'aménagement
+                    professionnel spécialisé dans la création de concepts
+                    personnalisés pour les espaces professionnels et
+                    résidentiels.
                   </p>
                   <p className="text-base leading-relaxed text-muted-foreground">
-                    Avec une passion pour l'architecture d'intérieur, nous nous engageons à offrir des 
-                    solutions de design innovantes qui allient esthétique et fonctionnalité. Notre approche 
-                    repose sur la qualité, la créativité, le professionnalisme et un service personnalisé 
-                    adapté aux besoins uniques de chaque client.
+                    Avec une passion pour l'architecture d'intérieur, nous nous
+                    engageons à offrir des solutions de design innovantes qui
+                    allient esthétique et fonctionnalité. Notre approche repose
+                    sur la qualité, la créativité, le professionnalisme et un
+                    service personnalisé adapté aux besoins uniques de chaque
+                    client.
                   </p>
                 </div>
 
@@ -235,7 +256,15 @@ const Portfolio = () => {
                 <div className="pt-4 border-t border-border">
                   <h3 className="text-xl font-semibold mb-4">Compétences</h3>
                   <div className="flex flex-wrap gap-2">
-                    {["AutoCAD", "SketchUp", "3DS Max", "V-Ray", "Photoshop", "Revit", "Lumion"].map((skill) => (
+                    {[
+                      "AutoCAD",
+                      "SketchUp",
+                      "3DS Max",
+                      "V-Ray",
+                      "Photoshop",
+                      "Revit",
+                      "Lumion",
+                    ].map((skill) => (
                       <span
                         key={skill}
                         className="px-4 py-2 bg-primary/10 text-primary rounded-full text-sm font-medium"
@@ -252,7 +281,10 @@ const Portfolio = () => {
       </section>
 
       {/* Contact Section */}
-      <section id="contact" className="py-24 bg-gradient-to-b from-background to-secondary/20 scroll-mt-24">
+      <section
+        id="contact"
+        className="py-24 bg-gradient-to-b from-background to-secondary/20 scroll-mt-24"
+      >
         <div className="container mx-auto px-6">
           <div className="max-w-5xl mx-auto">
             <div className="text-center mb-16">
@@ -263,14 +295,16 @@ const Portfolio = () => {
                 Notre équipe est à votre écoute pour donner vie à vos projets
               </p>
             </div>
-            
+
             <div className="grid md:grid-cols-2 gap-8 mb-12">
               {/* Phone */}
               <div className="bg-card rounded-xl shadow-lg p-8 border border-border hover:shadow-xl transition-shadow">
                 <div className="w-14 h-14 rounded-full bg-primary/10 flex items-center justify-center mb-6 mx-auto">
                   <Phone className="h-7 w-7 text-primary" />
                 </div>
-                <h3 className="text-lg font-semibold text-center mb-3">Téléphone</h3>
+                <h3 className="text-lg font-semibold text-center mb-3">
+                  Téléphone
+                </h3>
                 <p className="text-center text-muted-foreground font-medium">
                   +212 665 051 381
                 </p>
@@ -281,7 +315,9 @@ const Portfolio = () => {
                 <div className="w-14 h-14 rounded-full bg-primary/10 flex items-center justify-center mb-6 mx-auto">
                   <MapPin className="h-7 w-7 text-primary" />
                 </div>
-                <h3 className="text-lg font-semibold text-center mb-3">Adresse</h3>
+                <h3 className="text-lg font-semibold text-center mb-3">
+                  Adresse
+                </h3>
                 <div className="text-center text-muted-foreground text-sm font-medium space-y-1">
                   <p>6ème étage, Espace Ranime</p>
                   <p>16 Rue des Asphodèles</p>
@@ -293,8 +329,19 @@ const Portfolio = () => {
 
             {/* Social Links */}
             <div className="bg-card rounded-xl shadow-lg p-8 border border-border">
-              <h3 className="text-2xl font-semibold text-center mb-8">Suivez-nous</h3>
+              <h3 className="text-2xl font-semibold text-center mb-8">
+                {t("portfolio.follow")}
+              </h3>
               <div className="flex flex-wrap justify-center gap-4">
+                <a
+                  href="https://linkbio.co/Plateforme-AB"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center gap-3 px-6 py-3 bg-primary/10 text-primary rounded-lg hover:bg-primary/20 hover:scale-105 transition-all shadow-sm"
+                >
+                  <ExternalLink className="h-5 w-5" />
+                  <span className="font-medium">Plateforme AB</span>
+                </a>
                 <a
                   href="https://wa.me/212665051381"
                   target="_blank"
