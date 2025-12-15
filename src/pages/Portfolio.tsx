@@ -329,9 +329,7 @@ const Portfolio = () => {
 
             {/* Social Links */}
             <div className="bg-card rounded-xl shadow-lg p-8 border border-border">
-              <h3 className="text-2xl font-semibold text-center mb-8">
-                {t("portfolio.follow")}
-              </h3>
+              <h3 className="text-2xl font-semibold text-center mb-8">Suivez-nous</h3>
               <div className="flex flex-wrap justify-center gap-4">
                 <a
                   href="https://linkbio.co/Plateforme-AB"
