@@ -4,6 +4,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Button } from "@/components/ui/button";
 import { useState } from "react";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 interface FormStep1ProjectProps {
   formData: FormData;
@@ -20,15 +21,24 @@ const projectTypes = [
 ];
 
 const FormStep1Project = ({ formData, updateFormData, onNext }: FormStep1ProjectProps) => {
+  const { t } = useLanguage();
   const [errors, setErrors] = useState<Record<string, string>>({});
+
+  const projectLabelKey: Record<string, string> = {
+    "Appartement": 'project.type.apartment',
+    "Villa": 'project.type.villa',
+    "Maison": 'project.type.house',
+    "Magasin": 'project.type.store',
+    "Plateau Bureau": 'project.type.office',
+  };
 
   const validateAndNext = () => {
     const newErrors: Record<string, string> = {};
     
-    if (!formData.projectType) newErrors.projectType = "Veuillez sélectionner un type de projet";
-    if (!formData.city) newErrors.city = "La ville est requise";
-    if (!formData.surface) newErrors.surface = "La surface est requise";
-    if (!formData.floors) newErrors.floors = "Le nombre d'étages est requis";
+    if (!formData.projectType) newErrors.projectType = t('error.projectTypeRequired');
+    if (!formData.city) newErrors.city = t('error.cityRequired');
+    if (!formData.surface) newErrors.surface = t('error.surfaceRequired');
+    if (!formData.floors) newErrors.floors = t('error.floorsRequired');
 
     setErrors(newErrors);
     
@@ -40,12 +50,8 @@ const FormStep1Project = ({ formData, updateFormData, onNext }: FormStep1Project
   return (
     <div className="max-w-4xl mx-auto px-4 animate-fade-in">
       <div className="text-center mb-8">
-        <h1 className="text-3xl md:text-4xl font-bold text-foreground mb-2">
-          Type de projet
-        </h1>
-        <p className="text-muted-foreground text-lg">
-          Quel type de projet souhaitez-vous réaliser?
-        </p>
+        <h1 className="text-3xl md:text-4xl font-bold text-foreground mb-2">{t('project.type.title')}</h1>
+        <p className="text-muted-foreground text-lg">{t('project.type.subtitle')}</p>
       </div>
 
       {/* Project Type Cards */}
@@ -66,7 +72,7 @@ const FormStep1Project = ({ formData, updateFormData, onNext }: FormStep1Project
               <div className="flex flex-col items-center justify-center py-4">
                 <Icon className={`w-10 h-10 mb-3 ${isSelected ? "text-primary" : "text-muted-foreground"}`} />
                 <span className={`text-sm font-medium text-center ${isSelected ? "text-primary" : "text-foreground"}`}>
-                  {project.name}
+                  {t(projectLabelKey[project.name] || project.name)}
                 </span>
               </div>
             </button>
@@ -80,11 +86,11 @@ const FormStep1Project = ({ formData, updateFormData, onNext }: FormStep1Project
       {/* Input Fields */}
       <div className="grid md:grid-cols-3 gap-4 mb-8">
         <div className="space-y-2">
-          <Label htmlFor="surface">Surface (m²)</Label>
+          <Label htmlFor="surface">{t('project.surface')}</Label>
           <Input
             id="surface"
             type="number"
-            placeholder="Ex: 150"
+            placeholder={t('project.surfacePlaceholder')}
             value={formData.surface || ""}
             onChange={(e) => {
               updateFormData({ surface: e.target.value });
@@ -98,10 +104,10 @@ const FormStep1Project = ({ formData, updateFormData, onNext }: FormStep1Project
         </div>
 
         <div className="space-y-2">
-          <Label htmlFor="city">Ville</Label>
+          <Label htmlFor="city">{t('project.city')}</Label>
           <Input
             id="city"
-            placeholder="Ex: Casablanca"
+            placeholder={t('project.cityPlaceholder')}
             value={formData.city || ""}
             onChange={(e) => {
               updateFormData({ city: e.target.value });
@@ -115,11 +121,11 @@ const FormStep1Project = ({ formData, updateFormData, onNext }: FormStep1Project
         </div>
 
         <div className="space-y-2">
-          <Label htmlFor="floors">Nombre d'étages</Label>
+          <Label htmlFor="floors">{t('project.floors')}</Label>
           <Input
             id="floors"
             type="number"
-            placeholder="Ex: 2"
+            placeholder={t('project.floorsPlaceholder')}
             value={formData.floors || ""}
             onChange={(e) => {
               updateFormData({ floors: e.target.value });
@@ -138,7 +144,7 @@ const FormStep1Project = ({ formData, updateFormData, onNext }: FormStep1Project
         className="w-full h-12 text-base font-semibold"
         size="lg"
       >
-        Suivant
+        {t('form.next')}
       </Button>
     </div>
   );

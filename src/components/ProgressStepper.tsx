@@ -1,15 +1,17 @@
 import { Check } from "lucide-react";
 import { cn } from "@/lib/utils";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 interface ProgressStepperProps {
   currentStep: number;
   totalSteps: number;
 }
 
-const projectStepLabels = ["Projet", "Détails", "Documents"];
-const formationStepLabels = ["Formations", "Planning", "Informations"];
-
 const ProgressStepper = ({ currentStep, totalSteps }: ProgressStepperProps) => {
+  const { t } = useLanguage();
+  const projectStepLabels = [t('step.project'), t('step.details'), t('step.documents')];
+  const formationStepLabels = [t('step.formations'), t('step.planning'), t('step.information')];
+
   const steps = Array.from({ length: totalSteps }, (_, i) => i + 1);
   const stepLabels = totalSteps === 3 && window.location.search.includes("type=project") 
     ? projectStepLabels 

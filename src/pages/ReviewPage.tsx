@@ -6,11 +6,13 @@ import { Phone, Send, ArrowLeft, Loader2 } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 import { useState } from "react";
 import { uploadMultipleFiles } from "@/lib/uploadFile";
+import { useLanguage } from "@/contexts/LanguageContext"; 
 
 const ReviewPage = () => {
   const location = useLocation();
   const navigate = useNavigate();
   const { toast } = useToast();
+  const { t } = useLanguage();
   const formData = location.state?.formData as FormData;
   const formType = location.state?.formType || "formation";
   const [isUploading, setIsUploading] = useState(false);
@@ -23,51 +25,35 @@ const ReviewPage = () => {
   }
 
   // Détecter si c'est une inscription formation
-  const formations = ["AutoCAD", "Revit", "3ds Max", "Formation sur DOC", "Pack Formation"];
-  const isFormation = formations.includes(formData.projectType);
+  const isFormation = formType === "formation";
+
+  const projectLabelKey: Record<string, string> = {
+    "Appartement": 'project.type.apartment',
+    "Villa": 'project.type.villa',
+    "Maison": 'project.type.house',
+    "Magasin": 'project.type.store',
+    "Plateau Bureau": 'project.type.office',
+  };
 
   const formatWhatsAppMessage = (fileUrls: string[] = []) => {
     if (isFormation) {
       // Message pour inscription formation
-      const message = `🎓 *Nouvelle inscription formation*
-
-📚 *Détails de l'inscription*
-• Formation : *${formData.projectType}*
-• Nom & Prénom : *${formData.city}*
-• Téléphone : *${formData.surface}*
-• Email : *${formData.floors}*
-
-━━━━━━━━━━━━━━━
-📲 Message généré automatiquement depuis l'application Formation Request`;
+      const message = `🎓 ${t('review.inscriptionDetails')}\n\n${t('review.formation')}: *${t(`formation.options.${formData.projectType}.name`)}*\n${t('review.fullName')}: *${formData.city}*\n${t('review.phone')}: *${formData.surface}*\n${t('review.email')}: *${formData.floors}*\n\n━━━━━━━━━━━━━━━\n📲 ${t('toast.preparedDesc')}`;
       return encodeURIComponent(message);
     }
 
     // Message pour projet architecture
     const tasksText = formData.tasks && formData.tasks.length > 0
-      ? `\n\n✅ *Tâches sélectionnées*\n${formData.tasks.map(t => `• ${t}`).join('\n')}`
+      ? `\n\n✅ *${t('review.tasks')}*\n${formData.tasks.map(t => `• ${t}`).join('\n')}`
       : '';
 
     const filesText = fileUrls.length > 0
-      ? fileUrls.map((url, index) => `• Fichier ${index + 1} : ${url}`).join('\n')
-      : 'Aucun fichier joint (les documents sont conservés sur votre espace).';
+      ? fileUrls.map((url, index) => `• ${t('review.filesCount').replace('fichier(s)', '')} ${index + 1} : ${url}`).join('\n')
+      : t('review.noFiles');
 
-    const message = `📐 *Nouveau projet client – Récapitulatif*
+    const projectTypeLabel = projectLabelKey[formData.projectType] ? t(projectLabelKey[formData.projectType]) : formData.projectType;
 
-🏠 *Détails du projet*
-• Type de projet : *${formData.projectType}*
-• Surface : *${formData.surface} m²*
-• Nombre d'étages : *${formData.floors}*
-• Ville : *${formData.city}*
-• Référence du terrain : *${formData.landReference || "Non spécifié"}*
-
-📝 *Remarques du client*
-${formData.remarks || "Aucune remarque"}${tasksText}
-
-📎 *Documents fournis par le client*
-${filesText}
-
-━━━━━━━━━━━━━━━
-📲 Message généré automatiquement depuis l'application Architect Request Now`;
+    const message = `📐 ${t('review.projectDetails')}\n\n${t('review.projectType')}: *${projectTypeLabel}*\n${t('review.surface')}: *${formData.surface} m²*\n${t('review.floors')}: *${formData.floors}*\n${t('review.city')}: *${formData.city}*\n${t('review.landRef')}: *${formData.landReference || t('review.notSpecified')}*\n\n${t('review.remarks')}\n${formData.remarks || t('review.notSpecified')}${tasksText}\n\n${t('review.documents')}\n${filesText}\n\n📲 ${t('toast.preparedDesc')}`;
 
     return encodeURIComponent(message);
   };
@@ -87,8 +73,8 @@ ${filesText}
         window.open(whatsappUrl, "_blank");
 
         toast({
-          title: "Message préparé!",
-          description: "WhatsApp va s'ouvrir avec votre demande.",
+          title: t('toast.prepared'),
+          description: t('toast.preparedDesc'),
         });
 
         setTimeout(() => {
@@ -111,8 +97,8 @@ ${filesText}
         window.open(whatsappUrl, "_blank");
 
         toast({
-          title: "Message préparé!",
-          description: "WhatsApp va s'ouvrir avec votre demande.",
+          title: t('toast.prepared'),
+          description: t('toast.preparedDesc'),
         });
 
         setTimeout(() => {
@@ -123,7 +109,7 @@ ${filesText}
       console.error("Error:", error);
       const errorMessage = error instanceof Error ? error.message : "Une erreur inconnue est survenue";
       toast({
-        title: "Erreur",
+        title: t('toast.error'),
         description: errorMessage,
         variant: "destructive",
       });
@@ -147,74 +133,72 @@ ${filesText}
           className="mb-8"
         >
           <ArrowLeft className="mr-2 h-4 w-4" />
-          Retour
+          {t('form.back')}
         </Button>
 
         <div className="animate-fade-in">
-          <h1 className="text-4xl font-bold mb-2">Récapitulatif</h1>
-          <p className="text-muted-foreground mb-8">
-            Vérifiez vos informations avant l'envoi
-          </p>
+          <h1 className="text-4xl font-bold mb-2">{t('review.title')}</h1>
+          <p className="text-muted-foreground mb-8">{t('review.subtitle')}</p>
 
           <Card className="shadow-[var(--shadow-elegant)] mb-8">
             <CardHeader>
-              <CardTitle>{isFormation ? "Détails de l'inscription" : "Détails du Projet"}</CardTitle>
-            </CardHeader>
+              <CardTitle>{isFormation ? t('review.inscriptionDetails') : t('review.projectDetails')}</CardTitle>
+            </CardHeader> 
             <CardContent className="space-y-4">
               {isFormation ? (
                 <div className="grid grid-cols-2 gap-4">
                   <div>
-                    <p className="text-sm text-muted-foreground">Formation</p>
-                    <p className="font-medium">{formData.projectType}</p>
+                    <p className="text-sm text-muted-foreground">{t('review.formation')}</p>
+                    <p className="font-medium">{t(`formation.options.${formData.projectType}.name`)}</p>
                   </div>
                   <div>
-                    <p className="text-sm text-muted-foreground">Téléphone</p>
+                    <p className="text-sm text-muted-foreground">{t('review.phone')}</p>
                     <p className="font-medium">{formData.surface}</p>
                   </div>
                   <div>
-                    <p className="text-sm text-muted-foreground">Nom & Prénom</p>
+                    <p className="text-sm text-muted-foreground">{t('review.fullName')}</p>
                     <p className="font-medium">{formData.city}</p>
                   </div>
                   <div>
-                    <p className="text-sm text-muted-foreground">Email</p>
+                    <p className="text-sm text-muted-foreground">{t('review.email')}</p>
                     <p className="font-medium">{formData.floors}</p>
                   </div>
                 </div>
               ) : (
                 <div className="grid grid-cols-2 gap-4">
                   <div>
-                    <p className="text-sm text-muted-foreground">Type de Projet</p>
-                    <p className="font-medium">{formData.projectType}</p>
+                    <p className="text-sm text-muted-foreground">{t('review.projectType')}</p>
+                    <p className="font-medium">{projectLabelKey[formData.projectType] ? t(projectLabelKey[formData.projectType]) : formData.projectType}</p>
                   </div>
                   <div>
-                    <p className="text-sm text-muted-foreground">Surface</p>
+                    <p className="text-sm text-muted-foreground">{t('review.surface')}</p>
                     <p className="font-medium">{formData.surface} m²</p>
                   </div>
                   <div>
-                    <p className="text-sm text-muted-foreground">Ville</p>
+                    <p className="text-sm text-muted-foreground">{t('review.city')}</p>
                     <p className="font-medium">{formData.city}</p>
                   </div>
                   <div>
-                    <p className="text-sm text-muted-foreground">Nombre d'étages</p>
+                    <p className="text-sm text-muted-foreground">{t('review.floors')}</p>
                     <p className="font-medium">{formData.floors}</p>
                   </div>
                   <div className="col-span-2">
-                    <p className="text-sm text-muted-foreground">Référence du terrain</p>
-                    <p className="font-medium">{formData.landReference || "Non spécifié"}</p>
+                    <p className="text-sm text-muted-foreground">{t('review.landRef')}</p>
+                    <p className="font-medium">{formData.landReference || t('review.notSpecified')}</p>
                   </div>
                 </div>
               )}
 
               {formData.remarks && (
                 <div className="pt-4 border-t">
-                  <p className="text-sm text-muted-foreground mb-2">Remarques</p>
+                  <p className="text-sm text-muted-foreground mb-2">{t('review.remarks')}</p>
                   <p className="text-sm">{formData.remarks}</p>
                 </div>
               )}
 
               {formData.tasks && formData.tasks.length > 0 && (
                 <div className="pt-4 border-t">
-                  <p className="text-sm text-muted-foreground mb-2">Tâches sélectionnées</p>
+                  <p className="text-sm text-muted-foreground mb-2">{t('review.tasks')}</p>
                   <ul className="space-y-1">
                     {formData.tasks.map((task, index) => (
                       <li key={index} className="text-sm flex items-center">
@@ -223,18 +207,14 @@ ${filesText}
                       </li>
                     ))}
                   </ul>
-                </div>
+                </div> 
               )}
 
               {formData.images.length > 0 && (
                 <div className="pt-4 border-t">
-                  <p className="text-sm text-muted-foreground mb-2">
-                    Documents joints
-                  </p>
-                  <p className="text-sm font-medium">
-                    {formData.images.length} fichier(s)
-                  </p>
-                </div>
+                  <p className="text-sm text-muted-foreground mb-2">{t('review.documents')}</p>
+                  <p className="text-sm font-medium">{formData.images.length} {t('review.filesCount')}</p>
+                </div> 
               )}
             </CardContent>
           </Card>
@@ -244,7 +224,7 @@ ${filesText}
               <CardContent className="p-6">
                 <div className="space-y-3">
                   <div className="flex items-center justify-between text-sm">
-                    <span className="font-medium">Upload en cours...</span>
+                    <span className="font-medium">{t('review.uploading')}</span>
                     <span className="text-muted-foreground">{uploadProgress}%</span>
                   </div>
 
@@ -275,14 +255,14 @@ ${filesText}
               {isUploading ? (
                 <>
                   <Loader2 className="mr-2 h-5 w-5 animate-spin" />
-                  Upload en cours...
+                  {t('review.uploading')}
                 </>
               ) : (
                 <>
                   <Send className="mr-2 h-5 w-5" />
-                  Envoyer sur WhatsApp
+                  {t('review.sendWhatsApp')}
                 </>
-              )}
+              )} 
             </Button>
             <Button
               onClick={handleCall}
@@ -291,13 +271,11 @@ ${filesText}
               size="lg"
             >
               <Phone className="mr-2 h-5 w-5" />
-              Appeler
+              {t('review.call')}
             </Button>
           </div>
 
-          <p className="text-center text-sm text-muted-foreground mt-6">
-            Envoyé à: 0665051381
-          </p>
+          <p className="text-center text-sm text-muted-foreground mt-6">{t('review.sentTo')} 0665051381</p> 
         </div>
       </div>
     </div>

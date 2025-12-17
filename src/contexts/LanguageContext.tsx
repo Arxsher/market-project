@@ -63,6 +63,12 @@ const translations = {
     // Footer
     "footer.rights": "© 2025 Architecture d'Excellence. Tous droits réservés.",
     "footer.contact": "Contact:",
+    "footer.contactAria": "Contacter via WhatsApp",
+
+    // Not Found
+    "notfound.title": "404",
+    "notfound.message": "Oups ! Page non trouvée",
+    "notfound.return": "Retour à l'accueil",
     
     // Portfolio Page
     "portfolio.interior": "Architecture d'intérieur",
@@ -90,8 +96,13 @@ const translations = {
     "portfolio.phone": "Téléphone",
     "portfolio.address": "Adresse",
     "portfolio.follow": "Suivez-nous",
+    "social.platform": "Plateforme AB",
+    "social.whatsapp": "WhatsApp",
+    "social.instagram": "Instagram",
+    "social.youtube": "YouTube",
+    "social.tiktok": "TikTok",
     "portfolio.footer": "© 2025 AB Anas BENLECHGAR. Tous droits réservés.",
-    
+
     // Form Pages
     "form.back": "Retour",
     "form.next": "Suivant",
@@ -113,7 +124,44 @@ const translations = {
     "formation.skills": "Compétences",
     "formation.level": "Niveau",
     "formation.duration": "Durée",
-    
+
+    // Formation options
+    "formation.options.autocad.name": "AutoCAD",
+    "formation.options.autocad.description": "Maîtrisez le dessin technique 2D/3D",
+    "formation.options.autocad.skills": "Plans, coupes, façades",
+    "formation.options.autocad.level": "Débutant à Avancé",
+    "formation.options.autocad.duration": "40 heures",
+
+    "formation.options.revit.name": "Revit",
+    "formation.options.revit.description": "BIM et modélisation architecturale",
+    "formation.options.revit.skills": "Maquettes numériques, coordination",
+    "formation.options.revit.level": "Intermédiaire",
+    "formation.options.revit.duration": "50 heures",
+
+    "formation.options.3dsmax.name": "3ds Max",
+    "formation.options.3dsmax.description": "Rendus 3D photoréalistes",
+    "formation.options.3dsmax.skills": "Modélisation, textures, éclairage",
+    "formation.options.3dsmax.level": "Intermédiaire à Avancé",
+    "formation.options.3dsmax.duration": "45 heures",
+
+    "formation.options.dce.name": "Formation DCE",
+    "formation.options.dce.description": "Documentation technique professionnelle",
+    "formation.options.dce.skills": "Standards, nomenclature, dossiers",
+    "formation.options.dce.level": "Débutant",
+    "formation.options.dce.duration": "30 heures",
+
+    "formation.options.presentielle_online.name": "Formation Présentielle & En ligne",
+    "formation.options.presentielle_online.description": "Parcours complet multi-logiciels",
+    "formation.options.presentielle_online.skills": "AutoCAD + Revit + 3ds Max",
+    "formation.options.presentielle_online.level": "Tous niveaux",
+    "formation.options.presentielle_online.duration": "120 heures",
+
+    "formation.options.pack.name": "Pack Formations & Bibliothèque",
+    "formation.options.pack.description": "Accès à plus de 200 heures de cours et ressources, documents techniques inclus",
+    "formation.options.pack.skills": "Plus de 200 heures de formation + documents",
+    "formation.options.pack.level": "Du niveau débutant au niveau avancé",
+    "formation.options.pack.duration": "Accès permanent",
+
     // FormStep2 - Planning
     "planning.title": "Planning",
     "planning.subtitle": "Découvrez le parcours pédagogique détaillé de votre formation",
@@ -124,8 +172,61 @@ const translations = {
     "planning.atYourPace": "À votre rythme",
     "planning.progressive": "modules progressifs",
     "planning.detailed": "Programme détaillé",
-    "planning.packageDetails": "تفاصيل الحزمة",
-    
+    "planning.packageDetails": "Détails de la formation",
+    "planning.durationUnit": "heures",
+
+    // Planning modules - AutoCAD
+    "planning.modules.autocad.0.name": "Introduction à AutoCAD",
+    "planning.modules.autocad.0.content": "Interface, outils de base, premiers dessins",
+    "planning.modules.autocad.1.name": "Dessin 2D avancé",
+    "planning.modules.autocad.1.content": "Calques, blocs, annotations, cotations",
+    "planning.modules.autocad.2.name": "Modélisation 3D",
+    "planning.modules.autocad.2.content": "Volumes, surfaces, rendu basique",
+    "planning.modules.autocad.3.name": "Projet pratique",
+    "planning.modules.autocad.3.content": "Plan complet d'une villa moderne",
+
+    // Planning modules - Revit
+    "planning.modules.revit.0.name": "Introduction au BIM",
+    "planning.modules.revit.0.content": "Concepts BIM, interface Revit, navigation",
+    "planning.modules.revit.1.name": "Modélisation architecturale",
+    "planning.modules.revit.1.content": "Murs, sols, toits, escaliers",
+    "planning.modules.revit.2.name": "Documentation",
+    "planning.modules.revit.2.content": "Plans, coupes, détails, nomenclatures",
+    "planning.modules.revit.3.name": "Familles et rendu",
+    "planning.modules.revit.3.content": "Création de familles, rendu photoréaliste",
+
+    // Planning modules - 3ds Max
+    "planning.modules.3dsmax.0.name": "Interface et modélisation",
+    "planning.modules.3dsmax.0.content": "Primitives, modificateurs, modélisation poly",
+    "planning.modules.3dsmax.1.name": "Matériaux et textures",
+    "planning.modules.3dsmax.1.content": "Shader, UV mapping, textures réalistes",
+    "planning.modules.3dsmax.2.name": "Éclairage et caméras",
+    "planning.modules.3dsmax.2.content": "Lumières, caméras, composition",
+    "planning.modules.3dsmax.3.name": "Rendu et post-production",
+    "planning.modules.3dsmax.3.content": "V-Ray, Corona, retouches finales",
+
+    // Planning modules - DCE
+    "planning.modules.dce.0.name": "Standards de documentation",
+    "planning.modules.dce.0.content": "Normes, formats, échelles",
+    "planning.modules.dce.1.name": "Plans d'exécution",
+    "planning.modules.dce.1.content": "Détails techniques, nomenclature",
+    "planning.modules.dce.2.name": "Dossiers réglementaires",
+    "planning.modules.dce.2.content": "Permis de construire, CCTP",
+
+    // Planning modules - Présentiel & En ligne
+    "planning.modules.presentielle_online.0.name": "AutoCAD Foundation",
+    "planning.modules.presentielle_online.0.content": "Maîtrise complète du dessin 2D/3D",
+    "planning.modules.presentielle_online.1.name": "Revit Architecture",
+    "planning.modules.presentielle_online.1.content": "BIM et maquette numérique",
+    "planning.modules.presentielle_online.2.name": "3ds Max Rendu",
+    "planning.modules.presentielle_online.2.content": "Visualisation photoréaliste",
+    "planning.modules.presentielle_online.3.name": "Projet de synthèse",
+    "planning.modules.presentielle_online.3.content": "Villa complète de A à Z",
+
+    // Planning modules - Pack
+    "planning.modules.pack.0.name": "Module - Pack Complet",
+    "planning.modules.pack.0.content": "Parcours complet multi-logiciels de A à Z",
+
     // FormStep3 - Informations
     "info.title": "Vos informations",
     "info.subtitle": "Dernière étape : vérifiez et confirmez vos informations",
@@ -204,6 +305,7 @@ const translations = {
     "review.tasks": "Tâches sélectionnées",
     "review.documents": "Documents joints",
     "review.filesCount": "fichier(s)",
+    "review.noFiles": "Aucun fichier joint (les documents sont conservés sur votre espace).",
     "review.uploading": "Upload en cours...",
     "review.sendWhatsApp": "Envoyer sur WhatsApp",
     "review.call": "Appeler",
@@ -218,6 +320,9 @@ const translations = {
     "toast.prepared": "Message préparé!",
     "toast.preparedDesc": "WhatsApp va s'ouvrir avec votre demande.",
     "toast.error": "Erreur",
+    // Languages
+    "lang.fr": "Français",
+    "lang.ar": "العربية",
   },
   ar: {
     // Navigation
@@ -272,6 +377,12 @@ const translations = {
     // Footer
     "footer.rights": "© 2025 هندسة التميز. جميع الحقوق محفوظة.",
     "footer.contact": "اتصل:",
+    "footer.contactAria": "الاتصال عبر واتساب",
+
+    // Not Found
+    "notfound.title": "٤٠٤",
+    "notfound.message": "عذراً! الصفحة غير موجودة",
+    "notfound.return": "العودة إلى الصفحة الرئيسية",
     
     // Portfolio Page
     "portfolio.interior": "الهندسة الداخلية",
@@ -300,7 +411,14 @@ const translations = {
     "portfolio.address": "العنوان",
     "portfolio.follow": "تابعنا",
     "portfolio.footer": "© 2025 AB Anas BENLECHGAR. جميع الحقوق محفوظة.",
-    
+
+    // Social
+    "social.platform": "منصة AB",
+    "social.whatsapp": "واتساب",
+    "social.instagram": "إنستغرام",
+    "social.youtube": "يوتيوب",
+    "social.tiktok": "تيك توك",
+
     // Form Pages
     "form.back": "رجوع",
     "form.next": "التالي",
@@ -322,7 +440,44 @@ const translations = {
     "formation.skills": "المهارات",
     "formation.level": "المستوى",
     "formation.duration": "المدة",
-    
+
+    // Formation options
+    "formation.options.autocad.name": "AutoCAD",
+    "formation.options.autocad.description": "إتقان الرسم الفني ثنائي/ثلاثي الأبعاد",
+    "formation.options.autocad.skills": "مخططات، مقاطع، واجهات",
+    "formation.options.autocad.level": "من المبتدئ إلى المتقدم",
+    "formation.options.autocad.duration": "40 ساعة",
+
+    "formation.options.revit.name": "Revit",
+    "formation.options.revit.description": "BIM ونمذجة المعمارية",
+    "formation.options.revit.skills": "نماذج رقمية، تنسيق",
+    "formation.options.revit.level": "متوسط",
+    "formation.options.revit.duration": "50 ساعة",
+
+    "formation.options.3dsmax.name": "3ds Max",
+    "formation.options.3dsmax.description": "تصيير ثلاثي الأبعاد احترافي",
+    "formation.options.3dsmax.skills": "نمذجة، خامات، إضاءة",
+    "formation.options.3dsmax.level": "من المتوسط إلى المتقدم",
+    "formation.options.3dsmax.duration": "45 ساعة",
+
+    "formation.options.dce.name": "دورة DCE",
+    "formation.options.dce.description": "الوثائق التقنية المهنية",
+    "formation.options.dce.skills": "المعايير، الجداول، الملفات",
+    "formation.options.dce.level": "مبتدئ",
+    "formation.options.dce.duration": "30 ساعة",
+
+    "formation.options.presentielle_online.name": "دورات حضورية وعبر الإنترنت",
+    "formation.options.presentielle_online.description": "مسار متكامل متعدد البرامج",
+    "formation.options.presentielle_online.skills": "AutoCAD + Revit + 3ds Max",
+    "formation.options.presentielle_online.level": "لكل المستويات",
+    "formation.options.presentielle_online.duration": "120 ساعة",
+
+    "formation.options.pack.name": "حزمة الدورات والمكتبة",
+    "formation.options.pack.description": "أكثر من 200 ساعة تدريبية وملفات تقنية متاحة",
+    "formation.options.pack.skills": "أكثر من 200 ساعة + ملفات تقنية",
+    "formation.options.pack.level": "من المبتدئ إلى المتقدم",
+    "formation.options.pack.duration": "دائمًا متاح",
+
     // FormStep2 - Planning
     "planning.title": "البرنامج",
     "planning.subtitle": "اكتشف المسار التعليمي التفصيلي لتدريبك",
@@ -334,6 +489,7 @@ const translations = {
     "planning.progressive": "وحدات تدريجية",
     "planning.detailed": "البرنامج التفصيلي",
     "planning.packageDetails": "تفاصيل الحزمة",
+    "planning.durationUnit": "ساعات",
     
     // FormStep3 - Informations
     "info.title": "معلوماتك",
@@ -413,6 +569,7 @@ const translations = {
     "review.tasks": "المهام المحددة",
     "review.documents": "المستندات المرفقة",
     "review.filesCount": "ملف(ات)",
+    "review.noFiles": "لا يوجد ملفات مرفقة (الوثائق محفوظة في حسابك).",
     "review.uploading": "جاري الرفع...",
     "review.sendWhatsApp": "إرسال عبر واتساب",
     "review.call": "اتصال",
@@ -427,6 +584,9 @@ const translations = {
     "toast.prepared": "الرسالة جاهزة!",
     "toast.preparedDesc": "سيفتح واتساب مع طلبك.",
     "toast.error": "خطأ",
+    // Languages
+    "lang.fr": "فرنسية",
+    "lang.ar": "العربية",
   },
 };
 

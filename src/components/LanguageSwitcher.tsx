@@ -3,7 +3,7 @@ import { Button } from "@/components/ui/button";
 import { Globe } from "lucide-react";
 
 const LanguageSwitcher = () => {
-  const { language, setLanguage } = useLanguage();
+  const { language, setLanguage, t } = useLanguage();
 
   const toggleLanguage = () => {
     setLanguage(language === "fr" ? "ar" : "fr");
@@ -17,7 +17,7 @@ const LanguageSwitcher = () => {
       className="flex items-center gap-2 font-medium"
     >
       <Globe className="h-4 w-4" />
-      <span>{language === "fr" ? "AR" : "FR"}</span>
+      <span>{language === "fr" ? t('lang.ar') : t('lang.fr')}</span>
     </Button>
   );
 };

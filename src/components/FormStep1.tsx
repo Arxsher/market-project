@@ -8,60 +8,69 @@ interface FormStep1Props {
   onNext: () => void;
 }
 
+import { useLanguage } from "@/contexts/LanguageContext"; 
 const formations = [
   {
+    id: "autocad",
     name: "AutoCAD",
-    description: "Maîtrisez le dessin technique 2D/3D",
-    skills: "Plans, coupes, façades",
-    level: "Débutant à Avancé",
-    duration: "40 heures",
+    descriptionKey: "formation.options.autocad.description",
+    skillsKey: "formation.options.autocad.skills",
+    levelKey: "formation.options.autocad.level",
+    durationKey: "formation.options.autocad.duration",
     isPaid: false
   },
   {
+    id: "revit",
     name: "Revit",
-    description: "BIM et modélisation architecturale",
-    skills: "Maquettes numériques, coordination",
-    level: "Intermédiaire",
-    duration: "50 heures",
+    descriptionKey: "formation.options.revit.description",
+    skillsKey: "formation.options.revit.skills",
+    levelKey: "formation.options.revit.level",
+    durationKey: "formation.options.revit.duration",
     isPaid: false
   },
   {
+    id: "3dsmax",
     name: "3ds Max",
-    description: "Rendus 3D photoréalistes",
-    skills: "Modélisation, textures, éclairage",
-    level: "Intermédiaire à Avancé",
-    duration: "45 heures",
+    descriptionKey: "formation.options.3dsmax.description",
+    skillsKey: "formation.options.3dsmax.skills",
+    levelKey: "formation.options.3dsmax.level",
+    durationKey: "formation.options.3dsmax.duration",
     isPaid: false
   },
   {
+    id: "dce",
     name: "Formation DCE",
-    description: "Documentation technique professionnelle",
-    skills: "Standards, nomenclature, dossiers",
-    level: "Débutant",
-    duration: "30 heures",
+    descriptionKey: "formation.options.dce.description",
+    skillsKey: "formation.options.dce.skills",
+    levelKey: "formation.options.dce.level",
+    durationKey: "formation.options.dce.duration",
     isPaid: false
   },
   {
+    id: "presentielle_online",
     name: "Formation Présentielle & En ligne",
-    description: "Parcours complet multi-logiciels",
-    skills: "AutoCAD + Revit + 3ds Max",
-    level: "Tous niveaux",
-    duration: "120 heures",
+    descriptionKey: "formation.options.presentielle_online.description",
+    skillsKey: "formation.options.presentielle_online.skills",
+    levelKey: "formation.options.presentielle_online.level",
+    durationKey: "formation.options.presentielle_online.duration",
     isPaid: false
   },
   {
+    id: "pack",
     name: "Pack Formations & Bibliothèque",
-    description: "حزمة دورات تدريبية من الألف إلى الياء",
-    skills: "أكثر من 200 ساعة تدريب + وثائق",
-    level: "من الصفر إلى الاحتراف",
-    duration: "Accès permanent",
+    descriptionKey: "formation.options.pack.description",
+    skillsKey: "formation.options.pack.skills",
+    levelKey: "formation.options.pack.level",
+    durationKey: "formation.options.pack.duration",
     isPaid: true
   }
 ];
 
 const FormStep1 = ({ formData, updateFormData, onNext }: FormStep1Props) => {
-  const handleFormationSelect = (formationName: string) => {
-    updateFormData({ projectType: formationName });
+  const { t } = useLanguage();
+
+  const handleFormationSelect = (formationId: string) => {
+    updateFormData({ projectType: formationId });
     // Automatically go to next step after selection
     setTimeout(() => {
       onNext();
@@ -82,12 +91,8 @@ const FormStep1 = ({ formData, updateFormData, onNext }: FormStep1Props) => {
       >
         <div className="hero-overlay absolute inset-0" />
         <div className="relative z-10 flex flex-col items-center justify-center min-h-[400px] px-6 py-16 text-center">
-          <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-4 animate-fade-in">
-            Choisissez votre formation
-          </h1>
-          <p className="text-lg md:text-xl text-white/90 max-w-2xl animate-fade-in" style={{ animationDelay: '0.1s' }}>
-            Sélectionnez une formation pour découvrir son planning détaillé et vous inscrire
-          </p>
+          <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-4 animate-fade-in">{t('formation.title')}</h1>
+          <p className="text-lg md:text-xl text-white/90 max-w-2xl animate-fade-in" style={{ animationDelay: '0.1s' }}>{t('formation.subtitle')}</p>
         </div>
       </div>
 
@@ -99,33 +104,33 @@ const FormStep1 = ({ formData, updateFormData, onNext }: FormStep1Props) => {
               <Tooltip key={formation.name}>
                 <TooltipTrigger asChild>
                   <button
-                    onClick={() => handleFormationSelect(formation.name)}
+                    onClick={() => handleFormationSelect(formation.id)}
                     className="formation-card text-left group animate-scale-in"
                     style={{ animationDelay: `${index * 0.1}s` }}
                   >
                     <h3 className="text-xl font-bold text-foreground mb-2 group-hover:text-primary transition-colors">
-                      {formation.name}
+                      {t(`formation.options.${formation.id}.name`)}
                     </h3>
                     <p className="text-sm text-muted-foreground mb-4">
-                      {formation.description}
+                      {t(formation.descriptionKey)}
                     </p>
                     <div className="flex items-center justify-between mt-4 pt-4 border-t border-border">
                       <span className="text-xs font-medium text-primary bg-secondary px-3 py-1 rounded-full">
-                        {formation.level}
+                        {t(formation.levelKey)}
                       </span>
                       <span className="text-xs text-muted-foreground">
-                        {formation.duration}
+                        {t(formation.durationKey)}
                       </span>
                     </div>
                   </button>
                 </TooltipTrigger>
                 <TooltipContent side="top" className="tooltip-content">
                   <div className="space-y-2">
-                    <h4 className="font-semibold text-base text-foreground">{formation.name}</h4>
+                    <h4 className="font-semibold text-base text-foreground">{t(`formation.options.${formation.id}.name`)}</h4>
                     <div className="space-y-1 text-sm">
-                      <p><span className="font-medium">Compétences :</span> {formation.skills}</p>
-                      <p><span className="font-medium">Niveau :</span> {formation.level}</p>
-                      <p><span className="font-medium">Durée :</span> {formation.duration}</p>
+                      <p><span className="font-medium">{t('formation.skills') + ' :'}</span> {t(formation.skillsKey)}</p>
+                      <p><span className="font-medium">{t('formation.level') + ' :'}</span> {t(formation.levelKey)}</p>
+                      <p><span className="font-medium">{t('formation.duration') + ' :'}</span> {t(formation.durationKey)}</p>
                     </div>
                   </div>
                 </TooltipContent>

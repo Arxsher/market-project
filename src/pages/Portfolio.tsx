@@ -10,6 +10,7 @@ import {
   ExternalLink,
 } from "lucide-react";
 import { useNavigate } from "react-router-dom";
+import { useLanguage } from "@/contexts/LanguageContext";
 import abLogo from "@/assets/ab-logo.png";
 import { useState } from "react";
 import { Menu, X } from "lucide-react";
@@ -23,109 +24,22 @@ const TikTokIcon = ({ className }: { className?: string }) => (
 
 const Portfolio = () => {
   const navigate = useNavigate();
+  const { t } = useLanguage();
 
   const [open, setOpen] = useState(false);
 
   const services = [
-    "Conceptions 2D et 3D",
-    "Plans plafond, électricité, menuiserie",
-    "Plans carrelage, cuisine, dressing",
-    "Revêtements de sol et habillage",
-    "CPS, métré TCE",
-    "Planning et PV de chantier",
+    t('portfolio.service.1'),
+    t('portfolio.service.2'),
+    t('portfolio.service.3'),
+    t('portfolio.service.4'),
+    t('portfolio.service.5'),
+    t('portfolio.service.6'),
   ];
 
   return (
     <div className="min-h-screen bg-background">
-      {/* Header */}
-      <header className="sticky top-0 z-50 bg-card border-b border-border shadow-sm">
-        <div className="container mx-auto px-4 md:px-6 py-4">
-          <div className="flex items-center justify-between">
-            {/* Logo & Name */}
-            <div className="flex items-center gap-3">
-              <img
-                src={abLogo}
-                alt="AB Logo"
-                className="w-12 h-12 md:w-16 md:h-16 object-contain"
-              />
-              <div>
-                <h1 className="text-base md:text-xl font-semibold tracking-tight">
-                  AB Anas BENLECHGAR
-                </h1>
-                <p className="text-xs md:text-sm text-muted-foreground">
-                  Architecture d'intérieur
-                </p>
-              </div>
-            </div>
 
-            {/* Desktop Navigation */}
-            <nav className="hidden md:flex items-center gap-6">
-              <Button variant="ghost" onClick={() => navigate("/")}>
-                Home
-              </Button>
-              <Button
-                variant="ghost"
-                onClick={() =>
-                  document
-                    .getElementById("about")
-                    ?.scrollIntoView({ behavior: "smooth" })
-                }
-              >
-                About me
-              </Button>
-              <Button
-                variant="ghost"
-                onClick={() =>
-                  document
-                    .getElementById("contact")
-                    ?.scrollIntoView({ behavior: "smooth" })
-                }
-              >
-                Contact
-              </Button>
-            </nav>
-
-            {/* Mobile Menu Button */}
-            <button
-              className="md:hidden"
-              onClick={() => setOpen((prev) => !prev)}
-            >
-              {open ? <X size={26} /> : <Menu size={26} />}
-            </button>
-          </div>
-
-          {/* Mobile Navigation */}
-          {open && (
-            <div className="md:hidden mt-4 flex flex-col gap-2">
-              <Button variant="ghost" onClick={() => navigate("/")}>
-                Home
-              </Button>
-              <Button
-                variant="ghost"
-                onClick={() => {
-                  document
-                    .getElementById("about")
-                    ?.scrollIntoView({ behavior: "smooth" });
-                  setOpen(false);
-                }}
-              >
-                About me
-              </Button>
-              <Button
-                variant="ghost"
-                onClick={() => {
-                  document
-                    .getElementById("contact")
-                    ?.scrollIntoView({ behavior: "smooth" });
-                  setOpen(false);
-                }}
-              >
-                Contact
-              </Button>
-            </div>
-          )}
-        </div>
-      </header>
 
       {/* Hero Section with About Me */}
       <section className="py-20 bg-gradient-to-b from-secondary/20 to-background">
@@ -143,21 +57,13 @@ const Portfolio = () => {
                   <h1 className="text-4xl md:text-5xl font-bold tracking-tight mb-2">
                     AB Anas BENLECHGAR
                   </h1>
-                  <p className="text-xl text-muted-foreground font-medium">
-                    Architecture d'intérieur
-                  </p>
+                  <p className="text-xl text-muted-foreground font-medium">{t('portfolio.interior')}</p>
                 </div>
               </div>
 
               <div className="pt-6">
-                <h2 className="text-3xl font-bold mb-6">
-                  Conception / Aménagement / Travaux
-                </h2>
-                <p className="text-lg text-muted-foreground leading-relaxed">
-                  Transformez vos espaces avec des conceptions innovantes et
-                  personnalisées qui reflètent votre vision et votre style
-                  unique.
-                </p>
+                <h2 className="text-3xl font-bold mb-6">{t('portfolio.design.title')}</h2>
+                <p className="text-lg text-muted-foreground leading-relaxed">{t('portfolio.design.desc')}</p>
               </div>
 
               {/* Portfolio & Reference Cards */}
@@ -172,15 +78,10 @@ const Portfolio = () => {
                   <div className="w-12 h-12 rounded-full bg-secondary/60 flex items-center justify-center mb-4 group-hover:bg-secondary transition-colors">
                     <FolderOpen className="h-5 w-5 text-muted-foreground" />
                   </div>
-                  <h3 className="text-lg font-bold mb-2 group-hover:text-primary transition-colors">
-                    Portefeuille général
-                  </h3>
-                  <p className="text-sm text-muted-foreground mb-3">
-                    Découvrez l'ensemble de nos réalisations et projets
-                    d'architecture d'intérieur
-                  </p>
+                  <h3 className="text-lg font-bold mb-2 group-hover:text-primary transition-colors">{t('portfolio.folder.title')}</h3>
+                  <p className="text-sm text-muted-foreground mb-3">{t('portfolio.folder.desc')}</p>
                   <div className="flex items-center gap-2 text-primary text-sm font-medium">
-                    <span>Voir le portfolio</span>
+                    <span>{t('portfolio.folder.link')}</span>
                     <ExternalLink className="h-3 w-3 group-hover:translate-x-1 transition-transform" />
                   </div>
                 </a>
@@ -195,15 +96,10 @@ const Portfolio = () => {
                   <div className="w-12 h-12 rounded-full bg-secondary/60 flex items-center justify-center mb-4 group-hover:bg-secondary transition-colors">
                     <Award className="h-5 w-5 text-muted-foreground" />
                   </div>
-                  <h3 className="text-lg font-bold mb-2 group-hover:text-primary transition-colors">
-                    Référence
-                  </h3>
-                  <p className="text-sm text-muted-foreground mb-3">
-                    Nos certifications, attestations et références
-                    professionnelles
-                  </p>
+                  <h3 className="text-lg font-bold mb-2 group-hover:text-primary transition-colors">{t('portfolio.ref.title')}</h3>
+                  <p className="text-sm text-muted-foreground mb-3">{t('portfolio.ref.desc')}</p>
                   <div className="flex items-center gap-2 text-primary text-sm font-medium">
-                    <span>Voir les références</span>
+                    <span>{t('portfolio.ref.link')}</span>
                     <ExternalLink className="h-3 w-3 group-hover:translate-x-1 transition-transform" />
                   </div>
                 </a>
@@ -215,46 +111,35 @@ const Portfolio = () => {
               id="about"
               className="bg-card rounded-2xl shadow-elegant p-8 border border-border scroll-mt-24"
             >
-              <h2 className="text-3xl font-semibold mb-6">À propos de moi</h2>
+              <h2 className="text-3xl font-semibold mb-6">{t('portfolio.about.title')}</h2>
 
               <div className="space-y-6">
                 <div className="prose prose-slate max-w-none">
                   <p className="text-base leading-relaxed text-muted-foreground">
                     <strong className="text-foreground">
                       AB Anas BENLECHGAR
-                    </strong>{" "}
-                    est un bureau de design d'intérieur et d'aménagement
-                    professionnel spécialisé dans la création de concepts
-                    personnalisés pour les espaces professionnels et
-                    résidentiels.
+                    </strong>{" "}{t('portfolio.about.p1')}
                   </p>
-                  <p className="text-base leading-relaxed text-muted-foreground">
-                    Avec une passion pour l'architecture d'intérieur, nous nous
-                    engageons à offrir des solutions de design innovantes qui
-                    allient esthétique et fonctionnalité. Notre approche repose
-                    sur la qualité, la créativité, le professionnalisme et un
-                    service personnalisé adapté aux besoins uniques de chaque
-                    client.
-                  </p>
+                  <p className="text-base leading-relaxed text-muted-foreground">{t('portfolio.about.p2')}</p>
                 </div>
 
                 <div className="pt-4">
-                  <h3 className="text-xl font-semibold mb-4">Services</h3>
+                  <h3 className="text-xl font-semibold mb-4">{t('portfolio.services')}</h3>
                   <div className="grid grid-cols-1 gap-3">
-                    {services.map((service, index) => (
+                    {[1,2,3,4,5,6].map((i) => (
                       <div
-                        key={index}
+                        key={i}
                         className="flex items-start gap-3 p-3 bg-secondary/40 rounded-lg border border-border hover:bg-secondary/60 transition-colors"
                       >
                         <div className="w-2 h-2 bg-primary rounded-full mt-2" />
-                        <span className="text-sm font-medium">{service}</span>
+                        <span className="text-sm font-medium">{t(`portfolio.service.${i}`)}</span>
                       </div>
-                    ))}
+                    ))} 
                   </div>
                 </div>
 
                 <div className="pt-4 border-t border-border">
-                  <h3 className="text-xl font-semibold mb-4">Compétences</h3>
+                  <h3 className="text-xl font-semibold mb-4">{t('portfolio.skills')}</h3>
                   <div className="flex flex-wrap gap-2">
                     {[
                       "AutoCAD",
@@ -288,12 +173,8 @@ const Portfolio = () => {
         <div className="container mx-auto px-6">
           <div className="max-w-5xl mx-auto">
             <div className="text-center mb-16">
-              <h2 className="text-4xl md:text-5xl font-bold mb-4">
-                Contactez-nous
-              </h2>
-              <p className="text-muted-foreground text-lg">
-                Notre équipe est à votre écoute pour donner vie à vos projets
-              </p>
+              <h2 className="text-4xl md:text-5xl font-bold mb-4">{t('portfolio.contact.title')}</h2>
+              <p className="text-muted-foreground text-lg">{t('portfolio.contact.subtitle')}</p>
             </div>
 
             <div className="grid md:grid-cols-2 gap-8 mb-12">
@@ -302,9 +183,7 @@ const Portfolio = () => {
                 <div className="w-14 h-14 rounded-full bg-primary/10 flex items-center justify-center mb-6 mx-auto">
                   <Phone className="h-7 w-7 text-primary" />
                 </div>
-                <h3 className="text-lg font-semibold text-center mb-3">
-                  Téléphone
-                </h3>
+                <h3 className="text-lg font-semibold text-center mb-3">{t('portfolio.phone')}</h3>
                 <p className="text-center text-muted-foreground font-medium">
                   +212 665 051 381
                 </p>
@@ -315,21 +194,19 @@ const Portfolio = () => {
                 <div className="w-14 h-14 rounded-full bg-primary/10 flex items-center justify-center mb-6 mx-auto">
                   <MapPin className="h-7 w-7 text-primary" />
                 </div>
-                <h3 className="text-lg font-semibold text-center mb-3">
-                  Adresse
-                </h3>
+                <h3 className="text-lg font-semibold text-center mb-3">{t('portfolio.address')}</h3>
                 <div className="text-center text-muted-foreground text-sm font-medium space-y-1">
-                  <p>6ème étage, Espace Ranime</p>
-                  <p>16 Rue des Asphodèles</p>
-                  <p>Bd Ghandi</p>
-                  <p>Casablanca, Maroc</p>
+                  <p>{t('office.floor')}</p>
+                  <p>{t('office.street')}</p>
+                  <p>{t('office.boulevard')}</p>
+                  <p>{t('office.country')}</p>
                 </div>
               </div>
             </div>
 
             {/* Social Links */}
             <div className="bg-card rounded-xl shadow-lg p-8 border border-border">
-              <h3 className="text-2xl font-semibold text-center mb-8">Suivez-nous</h3>
+              <h3 className="text-2xl font-semibold text-center mb-8">{t('portfolio.follow')}</h3>
               <div className="flex flex-wrap justify-center gap-4">
                 <a
                   href="https://linkbio.co/Plateforme-AB"
@@ -338,7 +215,7 @@ const Portfolio = () => {
                   className="flex items-center gap-3 px-6 py-3 bg-primary/10 text-primary rounded-lg hover:bg-primary/20 hover:scale-105 transition-all shadow-sm"
                 >
                   <ExternalLink className="h-5 w-5" />
-                  <span className="font-medium">Plateforme AB</span>
+                  <span className="font-medium">{t('social.platform')}</span>
                 </a>
                 <a
                   href="https://wa.me/212665051381"
@@ -347,7 +224,7 @@ const Portfolio = () => {
                   className="flex items-center gap-3 px-6 py-3 bg-green-500/10 text-green-600 rounded-lg hover:bg-green-500/20 hover:scale-105 transition-all shadow-sm"
                 >
                   <MessageCircle className="h-5 w-5" />
-                  <span className="font-medium">WhatsApp</span>
+                  <span className="font-medium">{t('social.whatsapp')}</span>
                 </a>
                 <a
                   href="https://www.instagram.com/ab.anas.benlechgar?igsh=MWpyYXpobDE4MTM5Nw=="
@@ -356,7 +233,7 @@ const Portfolio = () => {
                   className="flex items-center gap-3 px-6 py-3 bg-pink-500/10 text-pink-600 rounded-lg hover:bg-pink-500/20 hover:scale-105 transition-all shadow-sm"
                 >
                   <Instagram className="h-5 w-5" />
-                  <span className="font-medium">Instagram</span>
+                  <span className="font-medium">{t('social.instagram')}</span>
                 </a>
                 <a
                   href="https://youtube.com/@ab.anas.benlechgar?si=RUq_6s2zJcsSBm8v"
@@ -365,7 +242,7 @@ const Portfolio = () => {
                   className="flex items-center gap-3 px-6 py-3 bg-red-500/10 text-red-600 rounded-lg hover:bg-red-500/20 hover:scale-105 transition-all shadow-sm"
                 >
                   <Youtube className="h-5 w-5" />
-                  <span className="font-medium">YouTube</span>
+                  <span className="font-medium">{t('social.youtube')}</span>
                 </a>
                 <a
                   href="https://tiktok.com/@abanassbenlechgar"
@@ -374,7 +251,7 @@ const Portfolio = () => {
                   className="flex items-center gap-3 px-6 py-3 bg-gray-500/10 text-gray-700 rounded-lg hover:bg-gray-500/20 hover:scale-105 transition-all shadow-sm"
                 >
                   <TikTokIcon className="h-5 w-5" />
-                  <span className="font-medium">TikTok</span>
+                  <span className="font-medium">{t('social.tiktok')}</span>
                 </a>
               </div>
             </div>
@@ -385,9 +262,7 @@ const Portfolio = () => {
       {/* Footer */}
       <footer className="bg-black text-white py-8">
         <div className="container mx-auto px-6 text-center">
-          <p className="text-sm">
-            © 2025 AB Anas BENLECHGAR. Tous droits réservés.
-          </p>
+          <p className="text-sm">{t('portfolio.footer')}</p>
         </div>
       </footer>
     </div>

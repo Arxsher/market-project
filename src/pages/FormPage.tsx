@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useNavigate, useSearchParams } from "react-router-dom";
+import { useLanguage } from "@/contexts/LanguageContext";
 import FormStep1 from "@/components/FormStep1";
 import FormStep2 from "@/components/FormStep2";
 import FormStep3 from "@/components/FormStep3";
@@ -26,6 +27,7 @@ export interface FormData {
 
 const FormPage = () => {
   const navigate = useNavigate();
+  const { t } = useLanguage();
   const [searchParams] = useSearchParams();
   const formType = searchParams.get("type") || "formation";
   const isProjectFlow = formType === "project";
@@ -99,8 +101,8 @@ const FormPage = () => {
             className="flex items-center gap-2"
           >
             <ArrowLeft className="w-4 h-4" />
-            Retour
-          </Button>
+            {t('form.back')}
+          </Button> 
         </div>
 
         <ProgressStepper currentStep={currentStep} totalSteps={totalSteps} />

@@ -1,4 +1,5 @@
 import { useNavigate } from "react-router-dom";
+import { useLanguage } from "@/contexts/LanguageContext";
 import { Button } from "@/components/ui/button";
 import { Building2 } from "lucide-react";
 import villaHero from "@/assets/villa-sunset-hero.jpg";
@@ -8,6 +9,8 @@ import buildingEntrance from "@/assets/building-entrance.jpg";
 
 const Index = () => {
   const navigate = useNavigate();
+  const { t } = useLanguage();
+  const heroTitleLines = t('hero.title').split('\n');
 
   return (
     <div className="min-h-screen bg-background">
@@ -28,15 +31,20 @@ const Index = () => {
           <div className="max-w-6xl mx-auto">
             <div className="flex items-center justify-center gap-3 mb-8">
               <Building2 className="h-8 w-8 text-white" />
-              <span className="text-white font-semibold text-lg tracking-wide uppercase">Architecture d'Excellence</span>
+              <span className="text-white font-semibold text-lg tracking-wide uppercase">{t('hero.badge')}</span>
             </div>
             
             <h1 className="text-5xl md:text-7xl font-bold mb-6 leading-tight text-center text-white animate-fade-in">
-              Transformez Vos Rêves<br />en Réalité
+              {heroTitleLines.map((line, i) => (
+                <span key={i}>
+                  {line}
+                  {i !== heroTitleLines.length - 1 && <br />}
+                </span>
+              ))}
             </h1>
             
             <p className="text-lg md:text-xl mb-12 text-white/95 font-normal leading-relaxed text-center max-w-3xl mx-auto animate-fade-in" style={{ animationDelay: '0.1s' }}>
-              Des projets architecturaux uniques, conçus avec passion et expertise pour créer des espaces qui vous ressemblent
+              {t('hero.subtitle')}
             </p>
             
             {/* CTA Buttons */}
@@ -47,7 +55,7 @@ const Index = () => {
                 className="relative bg-primary text-white border-2 border-white px-8 py-4 text-base font-medium rounded-lg shadow-lg min-w-[220px] overflow-hidden group"
               >
                 <span className="absolute inset-0 bg-black/60 backdrop-blur-sm rounded-lg scale-x-0 group-hover:scale-x-100 origin-left transition-transform duration-[5000ms] ease-out"></span>
-                <span className="relative z-10 group-hover:text-white transition-colors duration-300">Démarrer mon projet</span>
+                <span className="relative z-10 group-hover:text-white transition-colors duration-300">{t('hero.cta.project')}</span>
               </Button>
               
               {/* Button for formations */}
@@ -58,7 +66,7 @@ const Index = () => {
                 className="relative bg-transparent border-2 border-white text-white px-8 py-4 text-base font-medium rounded-lg backdrop-blur-sm min-w-[220px] overflow-hidden group"
               >
                 <span className="absolute inset-0 bg-primary rounded-lg scale-x-0 group-hover:scale-x-100 origin-left transition-transform duration-[5000ms] ease-out"></span>
-                <span className="relative z-10">Inscription aux formations</span>
+                <span className="relative z-10">{t('hero.cta.formation')}</span>
               </Button>
             </div>
           </div>
@@ -69,23 +77,18 @@ const Index = () => {
       <section className="py-32 bg-secondary/40">
         <div className="container mx-auto px-4">
           <div className="max-w-6xl mx-auto">
-            <h2 className="font-heading text-5xl md:text-6xl font-semibold text-center mb-20 tracking-tight">Notre Différence</h2>
+            <h2 className="font-heading text-5xl md:text-6xl font-semibold text-center mb-20 tracking-tight">{t('difference.title')}</h2>
             
             <div className="grid md:grid-cols-2 gap-10 md:gap-16">
               {/* Projets d'Architecture */}
                 <div className="space-y-7 animate-fade-in" style={{ animationDelay: "0.1s" }}>
                 <div className="bg-primary py-5 px-8 rounded-lg shadow-elegant">
-                  <h3 className="font-heading text-2xl font-semibold text-center text-primary-foreground tracking-wide">Projets d'Architecture</h3>
+                  <h3 className="font-heading text-2xl font-semibold text-center text-primary-foreground tracking-wide">{t('difference.projects.title')}</h3>
                 </div>
 
                 <div className="p-6 bg-card rounded-lg shadow-[var(--shadow-soft)] border border-border hover:shadow-[var(--shadow-elegant)] transition-all duration-300">
                   <p className="font-body text-base leading-relaxed">
-                  Nous mettons notre expertise au service de votre vision.
-                  <br />
-                  Grâce à un processus clair et rassurant, nous maîtrisons les enjeux techniques et réglementaires tout en apportant une valeur ajoutée créative et fonctionnelle.
-                  <br />
-                  <br />
-                  Confier votre projet, c’est investir dans la sérénité : nous transformons vos idées en espaces précis, esthétiques et durables, pour un résultat qui dépasse vos attentes.
+                  {t('difference.projects.desc')}
                   </p>
                 </div>
                 </div>
@@ -93,20 +96,12 @@ const Index = () => {
                 {/* Formations aux Logiciels */}
                 <div className="space-y-7 animate-fade-in" style={{ animationDelay: "0.2s" }}>
                 <div className="bg-primary py-5 px-8 rounded-lg shadow-elegant">
-                  <h3 className="font-heading text-2xl font-semibold text-center text-primary-foreground tracking-wide">Formations aux Logiciels</h3>
+                  <h3 className="font-heading text-2xl font-semibold text-center text-primary-foreground tracking-wide">{t('difference.formations.title')}</h3>
                 </div>
 
                 <div className="p-6 bg-card rounded-lg shadow-[var(--shadow-soft)] border border-border hover:shadow-[var(--shadow-elegant)] transition-all duration-300">
                   <p className="font-body text-base leading-relaxed">
-                  Une pédagogie tournée vers la pratique
-                  <br />
-                  Nos formateurs sont des experts du terrain.
-                  <br />
-                  <br />
-                  Nous proposons un cursus complet, basé sur l’apprentissage par la pratique, avec un suivi personnalisé même après la formation.
-                  <br />
-                  <br />
-                  Notre objectif : vous apprendre à concevoir efficacement, réduire les erreurs et améliorer la collaboration.
+                  {t('difference.formations.desc')}
                   </p>
                 </div>
                 </div>
@@ -122,17 +117,17 @@ const Index = () => {
             <div className="grid lg:grid-cols-2 gap-16 items-center">
               <div className="space-y-8 animate-fade-in">
                 <h2 className="font-heading text-4xl md:text-6xl font-semibold tracking-tight leading-tight">
-                  Une Équipe Dédiée à Votre Succès
+                  {t('team.title')}
                 </h2>
                 <div className="space-y-6">
                   <p className="font-body text-lg text-muted-foreground leading-relaxed">
-                    AB Anas BENLECHGAR est un bureau de design d’intérieur et d’aménagement professionnel, spécialisé dans la création de concepts sur mesure pour les espaces de travail.
+                    {t('team.p1')}
                   </p>
                   <p className="font-body text-lg text-muted-foreground leading-relaxed">
-                    Notre équipe d’architectes d’intérieur et d’ingénieurs passionnés croit en l’importance de la qualité, de la créativité et du professionnalisme. Nous nous engageons à offrir un service personnalisé, transparent et de haut niveau.
+                    {t('team.p2')}
                   </p>
                   <p className="font-body text-lg text-muted-foreground leading-relaxed">
-                    Chez AB Anas BENLECHGAR, nous donnons vie à vos idées en créant des environnements fonctionnels, esthétiques et durables.  
+                    {t('team.p3')}
                   </p>
                 </div>
                 <div className="pt-6">
@@ -141,7 +136,7 @@ const Index = () => {
                     size="lg"
                     className="h-14 px-10 text-base font-medium shadow-elegant hover:shadow-strong transition-all duration-300"
                   >
-                    Découvrir notre portfolio
+                    {t('team.cta')}
                   </Button>
                 </div>
               </div>
@@ -191,17 +186,17 @@ const Index = () => {
                 <div className="p-8 lg:p-12 flex flex-col justify-between">
                   <div className="space-y-6">
                     <h2 className="font-heading text-4xl md:text-5xl font-semibold tracking-tight">
-                      Bureau Casablanca
+                      {t('office.title')}
                     </h2>
                     <p className="font-body text-base text-muted-foreground leading-relaxed">
-                      Notre équipe est disponible chaque jour pour accompagner vos projets, résoudre vos problématiques et contribuer à l’amélioration continue de vos résultats.
+                      {t('office.desc')}
                     </p>
                     
                     {/* Address */}
                     <div className="pt-4 space-y-1 font-body text-sm">
-                      <p className="font-semibold">Boulevard Ghandi – Espace Ranime, 6ᵉ étage</p>
-                      <p>16 Rue des Asphodèles</p>
-                      <p>Casablanca -Maroc</p>
+                      <p className="font-semibold">{t('office.floor')}</p>
+                      <p>{t('office.street')}</p>
+                      <p>{t('office.boulevard')}</p>
                     </div>
                   </div>
 
@@ -216,7 +211,7 @@ const Index = () => {
                         allowFullScreen
                         loading="lazy"
                         referrerPolicy="no-referrer-when-downgrade"
-                        title="Bureau Casablanca - 16 Rue des Asphodèles, Bd Ghandi"
+                        title={`${t('office.title')} - ${t('office.street')}, ${t('office.boulevard')}`} 
                       />
                     </div>
                   </div>
@@ -231,17 +226,17 @@ const Index = () => {
       <section className="py-32 bg-gradient-to-b from-background to-secondary/20">
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto text-center">
-            <h2 className="font-heading text-5xl md:text-6xl font-semibold mb-8 tracking-tight">Prêt à commencer?</h2>
+            <h2 className="font-heading text-5xl md:text-6xl font-semibold mb-8 tracking-tight">{t('cta.title')}</h2>
             <p className="font-body text-xl md:text-2xl text-muted-foreground mb-12 font-light leading-relaxed">
-              Remplissez notre formulaire en quelques minutes et recevez une réponse rapide. Accédez également à nos formations pour développer vos compétences.
-            </p>
+              {t('cta.subtitle')}
+            </p> 
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Button
                 onClick={() => navigate("/form?type=project")}
                 size="lg"
                 className="h-16 px-14 text-base font-medium shadow-elegant hover:shadow-strong transition-all duration-300"
               >
-                Soumettre ma demande
+                {t('cta.submit')}
               </Button>
               <Button
                 onClick={() => navigate("/form?type=formation")}
@@ -249,7 +244,7 @@ const Index = () => {
                 variant="outline"
                 className="h-16 px-14 text-base font-medium shadow-elegant hover:shadow-strong transition-all duration-300 border-2"
               >
-                Accéder aux formations
+                {t('cta.formations')}
               </Button>
             </div>
           </div>
@@ -260,16 +255,16 @@ const Index = () => {
       <footer className="bg-black text-white py-12 border-t border-border/10">
         <div className="container mx-auto px-4 text-center">
           <p className="font-body text-sm font-light tracking-wide">
-            © 2025 Architecture d'Excellence. Tous droits réservés.
+            {t('footer.rights')}
           </p>
             <a
             href="https://wa.me/212665051381"
             target="_blank"
             rel="noopener noreferrer"
             className="font-body text-sm mt-3 opacity-90 font-light inline-flex items-center gap-2 hover:opacity-100 hover:text-white-400 hover:-translate-y-1 hover:scale-105 transition-transform transform duration-200 ease-out focus:outline-none focus:ring-2 focus:ring-emerald-400 rounded"
-            aria-label="Contacter via WhatsApp"
+            aria-label={t('footer.contactAria')}
             >
-            Contact: +212 665 051 381
+            {t('footer.contact')} +212 665 051 381
             </a>
         </div>
       </footer>

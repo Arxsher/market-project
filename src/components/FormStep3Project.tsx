@@ -4,6 +4,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Upload, Plus, X } from "lucide-react";
 import { useState } from "react";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 interface FormStep3ProjectProps {
   formData: FormData;
@@ -12,6 +13,7 @@ interface FormStep3ProjectProps {
 }
 
 const FormStep3Project = ({ formData, updateFormData, onNext }: FormStep3ProjectProps) => {
+  const { t } = useLanguage();
   const [newTask, setNewTask] = useState("");
   // Initialize from formData if available, otherwise empty
   const [uploadedFiles, setUploadedFiles] = useState<File[]>(formData.images || []);
@@ -46,12 +48,8 @@ const FormStep3Project = ({ formData, updateFormData, onNext }: FormStep3Project
   return (
     <div className="max-w-2xl mx-auto px-4 animate-fade-in">
       <div className="text-center mb-8">
-        <h1 className="text-3xl md:text-4xl font-bold text-foreground mb-2">
-          Documents & Images
-        </h1>
-        <p className="text-muted-foreground text-lg">
-          Ajoutez des plans, esquisses ou photos du terrain (optionnel)
-        </p>
+        <h1 className="text-3xl md:text-4xl font-bold text-foreground mb-2">{t('project.docs.title')}</h1>
+        <p className="text-muted-foreground text-lg">{t('project.docs.subtitle')}</p>
       </div>
 
       {/* Upload Zone */}
@@ -61,12 +59,8 @@ const FormStep3Project = ({ formData, updateFormData, onNext }: FormStep3Project
           className="flex flex-col items-center justify-center border-2 border-dashed border-border rounded-xl p-12 cursor-pointer hover:border-primary hover:bg-primary/5 transition-all"
         >
           <Upload className="w-12 h-12 text-muted-foreground mb-4" />
-          <p className="text-foreground font-medium mb-1">
-            Cliquez pour ajouter des fichiers
-          </p>
-          <p className="text-sm text-muted-foreground">
-            Images, PDF, Word, Excel, DWG, ZIP (max. 10MB)
-          </p>
+          <p className="text-foreground font-medium mb-1">{t('project.docs.upload')}</p>
+          <p className="text-sm text-muted-foreground">{t('project.docs.formats')}</p>
           <input
             id="file-upload"
             type="file"
@@ -100,12 +94,11 @@ const FormStep3Project = ({ formData, updateFormData, onNext }: FormStep3Project
 
       {/* Custom Tasks */}
       <div className="mb-8">
-        <Label className="text-base font-medium mb-3 block">
-          Tâches personnalisées (optionnel)
+        <Label className="text-base font-medium mb-3 block">{t('project.tasks') + ' (' + t('project.optional') + ')'}
         </Label>
         <div className="flex gap-2">
           <Input
-            placeholder="Ajouter une tâche personnalisée"
+            placeholder={t('project.tasksPlaceholder')}
             value={newTask}
             onChange={(e) => setNewTask(e.target.value)}
             onKeyPress={(e) => e.key === "Enter" && addTask()}
@@ -146,7 +139,7 @@ const FormStep3Project = ({ formData, updateFormData, onNext }: FormStep3Project
         className="w-full h-12 text-base font-semibold"
         size="lg"
       >
-        Voir le récapitulatif
+        {t('form.viewSummary')}
       </Button>
     </div>
   );
