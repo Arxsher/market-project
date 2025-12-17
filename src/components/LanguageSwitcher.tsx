@@ -2,7 +2,7 @@ import { useLanguage } from "@/contexts/LanguageContext";
 import { Button } from "@/components/ui/button";
 import { Globe } from "lucide-react";
 
-const LanguageSwitcher = () => {
+const LanguageSwitcher = ({ className }: { className?: string }) => {
   const { language, setLanguage, t } = useLanguage();
 
   const toggleLanguage = () => {
@@ -14,10 +14,13 @@ const LanguageSwitcher = () => {
       variant="outline"
       size="sm"
       onClick={toggleLanguage}
-      className="flex items-center gap-2 font-medium"
+      className={`flex items-center gap-1 font-medium ${className || ''}`}
+      aria-label={language === "fr" ? t('lang.ar') : t('lang.fr')}
     >
-      <Globe className="h-4 w-4" />
-      <span>{language === "fr" ? t('lang.ar') : t('lang.fr')}</span>
+      <span className={language === 'ar' ? 'font-semibold' : 'opacity-60'}>AR</span>
+      <span className="mx-2 text-muted-foreground">/</span>
+      <span className={language === 'fr' ? 'font-semibold' : 'opacity-60'}>FR</span>
+      <span className="sr-only">{language === "fr" ? t('lang.ar') : t('lang.fr')}</span>
     </Button>
   );
 };

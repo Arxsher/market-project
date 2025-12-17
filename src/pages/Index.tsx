@@ -28,6 +28,7 @@ const Index = () => {
         <div className="hero-overlay absolute inset-0" />
         
         <div className="container mx-auto px-4 relative z-10">
+
           <div className="max-w-6xl mx-auto">
             <div className="flex items-center justify-center gap-3 mb-8">
               <Building2 className="h-8 w-8 text-white" />

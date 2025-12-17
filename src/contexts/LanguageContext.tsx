@@ -323,6 +323,8 @@ const translations = {
     // Languages
     "lang.fr": "Français",
     "lang.ar": "العربية",
+    // helper for alignment classes depending on direction
+    "lang.classAlign": ""
   },
   ar: {
     // Navigation
@@ -330,6 +332,7 @@ const translations = {
     "nav.about": "من نحن",
     "nav.contact": "اتصل بنا",
     "nav.back": "رجوع",
+    "lang.classAlign": "md:left-4 md:right-auto",
     
     // Hero
     "hero.badge": "هندسة التميز",

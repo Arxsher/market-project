@@ -11,6 +11,7 @@ import ReviewPage from "./pages/ReviewPage";
 import SuccessPage from "./pages/SuccessPage";
 import NotFound from "./pages/NotFound";
 import Header from "@/components/Header";
+import FixedLanguageButton from "@/components/FixedLanguageButton";
 
 const queryClient = new QueryClient();
 
@@ -22,6 +23,7 @@ const App = () => (
         <Sonner />
         <BrowserRouter>
           <Header />
+          <FixedLanguageButton />
           <Routes>
             <Route path="/" element={<Index />} />
             <Route path="/portfolio" element={<Portfolio />} />
