@@ -111,7 +111,7 @@ const FormStep1 = ({ formData, updateFormData, onNext }: FormStep1Props) => {
                     <h3 className="text-xl font-bold text-foreground mb-2 group-hover:text-primary transition-colors">
                       {t(`formation.options.${formation.id}.name`)}
                     </h3>
-                    <p className="text-sm text-muted-foreground mb-4">
+                    <p className="text-sm text-muted-foreground mb-4 max-h-20 overflow-hidden whitespace-pre-line">
                       {t(formation.descriptionKey)}
                     </p>
                     <div className="flex items-center justify-between mt-4 pt-4 border-t border-border">

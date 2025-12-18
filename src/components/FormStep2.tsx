@@ -55,8 +55,7 @@ const planningData: Record<string, any> = {
       { 
         nameKey: "planning.modules.pack.0.name", 
         contentKey: "planning.modules.pack.0.content", 
-        duration: "Accès permanent",
-        expandable: true
+        duration: "Accès permanent"
       }
     ],
     descriptionKey: "formation.options.pack.description"
@@ -66,8 +65,9 @@ const planningData: Record<string, any> = {
 const FormStep2 = ({ formData, updateFormData, onNext }: FormStep2Props) => {
   const { t } = useLanguage();
   const [expandedModule, setExpandedModule] = useState<number | null>(null);
+  const [showPackDescription, setShowPackDescription] = useState(false);
   const selectedFormation = formData.projectType || "autocad";
-  const planning = planningData[selectedFormation] || planningData["autocad"];
+  const planning = planningData[selectedFormation] || planningData["autocad"];  
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -157,6 +157,29 @@ const FormStep2 = ({ formData, updateFormData, onNext }: FormStep2Props) => {
                     <p className="text-sm text-muted-foreground">
                       {t(module.contentKey)}
                     </p>
+
+                    {/* For the Pack module, show a compact toggle button that reveals the full description in a scrollable box */}
+                    {selectedFormation === "pack" && planning.descriptionKey && index === 0 && (
+                      <div className="mt-3">
+                        <div className="flex justify-end">
+                          <button
+                            type="button"
+                            className="text-sm text-primary underline"
+                            onClick={() => setShowPackDescription((v) => !v)}
+                            aria-expanded={showPackDescription}
+                            aria-controls="pack-description"
+                          >
+                            {showPackDescription ? t('formation.pack.hide') : t('formation.pack.show')}
+                          </button>
+                        </div>
+
+                        {showPackDescription && (
+                          <div id="pack-description" className="mt-2 p-3 border border-border rounded-md bg-white text-muted-foreground whitespace-pre-line max-h-64 overflow-auto">
+                            {t(planning.descriptionKey)}
+                          </div>
+                        )}
+                      </div>
+                    )}
                   </div>
                   
                   <div className="flex-shrink-0">

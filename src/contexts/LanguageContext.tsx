@@ -157,10 +157,12 @@ const translations = {
     "formation.options.presentielle_online.duration": "120 heures",
 
     "formation.options.pack.name": "Pack Formations & Bibliothèque",
-    "formation.options.pack.description": "Accès à plus de 200 heures de cours et ressources, documents techniques inclus",
+    "formation.options.pack.description": "Pack de formations de A à Z\nDu niveau débutant au professionnel\n\nDocuments administratifs en génie civil et travaux publics\n+100 fichiers couvrant tout ce qui concerne le génie civil et le BTP\n\nFormation complète de A à Z :\n\nAutoCAD\nArchicad\nREVIT ARCHITECTURE & STRUCTURE & MEP & BIM\nROBOT STRUCTURE ANALYSIS (béton armé et structures métalliques)\nCOVADIS VRD et routes\nGénie structure métallique (Construction Métallique)\nLumion\nSketchup\nCYPECAD / CYPE 3D\nCANECO\nDIALUX\nCIVIL 3D\nMs Project\nMétré et budget (Métré TCE)\nMicrosoft Excel\net d'autres cours......\n\nLes cours sont des vidéos enregistrées professionnellement, plus de 200 heures au total, ainsi que des documents\n\nDocuments techniques - note de calcul - plans -\nrapport journalier - avancement de projet - descriptif d'appel d'offres - CCAG - DGA\n\net bien d'autres\nLe tout à un prix très symbolique\n\nPour plus d'informations, contactez-nous sur WhatsApp",
     "formation.options.pack.skills": "Plus de 200 heures de formation + documents",
     "formation.options.pack.level": "Du niveau débutant au niveau avancé",
     "formation.options.pack.duration": "Accès permanent",
+    "formation.pack.show": "Voir la description",
+    "formation.pack.hide": "Fermer la description",
 
     // FormStep2 - Planning
     "planning.title": "Planning",
@@ -214,7 +216,7 @@ const translations = {
     "planning.modules.dce.2.content": "Permis de construire, CCTP",
 
     // Planning modules - Présentiel & En ligne
-    "planning.modules.presentielle_online.0.name": "AutoCAD Foundation",
+    "planning.modules.presentielle_online.0.name": "AutoCAD Fondation",
     "planning.modules.presentielle_online.0.content": "Maîtrise complète du dessin 2D/3D",
     "planning.modules.presentielle_online.1.name": "Revit Architecture",
     "planning.modules.presentielle_online.1.content": "BIM et maquette numérique",
@@ -476,10 +478,12 @@ const translations = {
     "formation.options.presentielle_online.duration": "120 ساعة",
 
     "formation.options.pack.name": "حزمة الدورات والمكتبة",
-    "formation.options.pack.description": "أكثر من 200 ساعة تدريبية وملفات تقنية متاحة",
+    "formation.options.pack.description": "حزمة دورات تدريبية من الألف إلى الياء\nمن الصفر إلى الاحتراف\n\nوثائق إدارية في الهندسة المدنية والأشغال العمومية\n+100 ملف شامل لكل ما يتعلق بالهندسة المدنية وأشغال البناء\n\nتدريب كامل من الألف إلى الياء:\n\nAutoCAD\nArchicad\nREVIT ARCHITECTURE & STRUCTURE & MEP & BIM\nROBOT STRUCTURE ANALYSIS \"الخرسانة المسلحة والهياكل المعدنية\"\nCOVADIS VRD والطرق\nالهندسة الإنشائية المعدنية (Construction Métallique)\nLumion\nSketchup\nCYPECAD / CYPE 3D\nCANECO\nDIALUX\nCIVIL 3D\nMs Project\nالمترية والميزانية (Métré TCE)\nMicrosoft Excel\nوغيرها من الدورات......\n\nدورات عبارة عن فيديوهات مسجلة باحتراف، كل ما ذكرنا وأكثر من 200 ساعة في المجموع، بالإضافة إلى الوثائق\n\nالوثائق التقنية - مذكرة حساب - مخططات -\nالتقرير اليومي - تقدم المشروع - وصف المناقصة العمومية - CCAG - DGA\n\nوالعديد غيرها\nكل هذا بسعر رمزي جداً\n\nلمزيد من المعلومات، تواصل معنا على الواتساب",
     "formation.options.pack.skills": "أكثر من 200 ساعة + ملفات تقنية",
     "formation.options.pack.level": "من المبتدئ إلى المتقدم",
     "formation.options.pack.duration": "دائمًا متاح",
+    "formation.pack.show": "عرض الوصف",
+    "formation.pack.hide": "إخفاء الوصف",
 
     // FormStep2 - Planning
     "planning.title": "البرنامج",
@@ -493,7 +497,59 @@ const translations = {
     "planning.detailed": "البرنامج التفصيلي",
     "planning.packageDetails": "تفاصيل الحزمة",
     "planning.durationUnit": "ساعات",
-    
+
+    // Planning modules - AutoCAD
+    "planning.modules.autocad.0.name": "مقدمة إلى AutoCAD",
+    "planning.modules.autocad.0.content": "الواجهة، أدوات الأساسية، الرسومات الأولى",
+    "planning.modules.autocad.1.name": "الرسم ثنائي الأبعاد المتقدم",
+    "planning.modules.autocad.1.content": "الطبقات، الكتل، التعليقات، القياسات",
+    "planning.modules.autocad.2.name": "النمذجة ثلاثية الأبعاد",
+    "planning.modules.autocad.2.content": "الأحجام، الأسطح، التصيير الأساسي",
+    "planning.modules.autocad.3.name": "مشروع عملي",
+    "planning.modules.autocad.3.content": "مخطط كامل لفيلّا حديثة",
+
+    // Planning modules - Revit
+    "planning.modules.revit.0.name": "مقدمة إلى BIM",
+    "planning.modules.revit.0.content": "مفاهيم BIM، واجهة Revit، التنقل",
+    "planning.modules.revit.1.name": "النمذجة المعمارية",
+    "planning.modules.revit.1.content": "الجدران، الأرضيات، الأسقف، السلالم",
+    "planning.modules.revit.2.name": "التوثيق",
+    "planning.modules.revit.2.content": "الرسومات، المقاطع، التفاصيل، الجداول",
+    "planning.modules.revit.3.name": "العناصر والتصيير",
+    "planning.modules.revit.3.content": "إنشاء العناصر، التصيير الفوتورياليستي",
+
+    // Planning modules - 3ds Max
+    "planning.modules.3dsmax.0.name": "الواجهة والنمذجة",
+    "planning.modules.3dsmax.0.content": "الأشكال الأولية، المعدلات، النمذجة المتعددة",
+    "planning.modules.3dsmax.1.name": "المواد والقوام",
+    "planning.modules.3dsmax.1.content": "الشفير، UV، قوام واقعي",
+    "planning.modules.3dsmax.2.name": "الإضاءة والكاميرات",
+    "planning.modules.3dsmax.2.content": "الأضواء، الكاميرات، التأليف",
+    "planning.modules.3dsmax.3.name": "التصيير وما بعد المعالجة",
+    "planning.modules.3dsmax.3.content": "V-Ray، Corona، اللمسات النهائية",
+
+    // Planning modules - DCE
+    "planning.modules.dce.0.name": "معايير التوثيق",
+    "planning.modules.dce.0.content": "المعايير، الصيغ، المقاييس",
+    "planning.modules.dce.1.name": "رسومات التنفيذ",
+    "planning.modules.dce.1.content": "التفاصيل الفنية، الجداول",
+    "planning.modules.dce.2.name": "الملفات التنظيمية",
+    "planning.modules.dce.2.content": "تصاريح البناء، CCTP",
+
+    // Planning modules - Présentiel & En ligne
+    "planning.modules.presentielle_online.0.name": "أساسيات AutoCAD",
+    "planning.modules.presentielle_online.0.content": "إتقان الرسم ثنائي/ثلاثي الأبعاد",
+    "planning.modules.presentielle_online.1.name": "Revit المعماري",
+    "planning.modules.presentielle_online.1.content": "BIM والنمذجة الرقمية",
+    "planning.modules.presentielle_online.2.name": "3ds Max للتصيير",
+    "planning.modules.presentielle_online.2.content": "التصوير الفوتورياليستي",
+    "planning.modules.presentielle_online.3.name": "مشروع تكاملي",
+    "planning.modules.presentielle_online.3.content": "فيلا كاملة من الألف إلى الياء",
+
+    // Planning modules - Pack
+    "planning.modules.pack.0.name": "وحدة - الحزمة الكاملة",
+    "planning.modules.pack.0.content": "مسار متكامل متعدد البرامج من الألف إلى الياء",
+
     // FormStep3 - Informations
     "info.title": "معلوماتك",
     "info.subtitle": "الخطوة الأخيرة: تحقق من معلوماتك وأكدها",
